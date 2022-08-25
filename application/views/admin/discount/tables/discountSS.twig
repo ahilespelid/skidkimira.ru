@@ -1,0 +1,45 @@
+{% extends "admin/parts/discountTableSS.twig" %}
+{% block data %}
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Компания</th>
+        <th>Дата начала</th>
+        <th>Дата окончания</th>        
+        <th>Категория</th>
+        <th>Модератор</th>
+
+        <th>Статус</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in records %}
+        <tr id="{{data.id}}">
+            <td>{{data.name|slice(0,40)}}</td>
+            <td>{{data.companyName|slice(0,40)}}</td>
+            <td>{{data.categoryName}}</td>
+            <td>{{data.siteuserEmail}}</td>
+            <td>{{data.startDate}}</td>
+            <td>{{data.finishDate}}</td>
+            <td>
+                {% if data.moderated == 0 and data.accepted == 0 %}
+                    Не отмодерирована
+                {% elseif data.moderated == 1 and data.accepted == 0 %}
+                    Не опубликована
+                {% elseif data.moderated == 1 and data.accepted == 1 %}
+                    Опубликована
+                {% endif %}
+            </td>
+            <td></td>
+            <td>
+                <a href="{{site_url()}}admin/company/{{data.companyId}}" target="_blank" class="btn btn-outline yellow btn-sm"><i class="fa fa-pencil-square-o"></i>Ред. Компанию</a>
+                <a href="{{site_url()}}admin/companyDiscount/{{data.companyId}}/{{data.id}}" target="_blank" class="btn btn-outline purple btn-sm"><i class="fa fa-pencil-square-o"></i>Ред. Акцию</a>
+                <a href="#basic" data-toggle="modal" onClick="urlToModal('{{site_url()}}{{uri_string()}}/{{data.id}}/remove');" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> Удалить</a>         
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>  
+    {% include 'admin/parts/removeModal.twig' %}               
+{% endblock %}

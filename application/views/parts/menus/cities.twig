@@ -1,0 +1,16 @@
+			<div class="city">
+
+				<span class="reg">Ваш регион:</span>
+
+				<select name="" class="cityselector" onchange="changeCity(this);">
+				{% set country = '' %}
+                    {% for city in cities %}
+						{% if country != city.country %}
+						<option disabled=disabled >{{city.country}}</option>
+						{% set country = city.country %}
+						{% endif %}
+                        <option value="{{city.id}}" {% verbatim %}{% if city == {% endverbatim %}{{city.id}}{% verbatim %}%}selected="selected"{% endif %}{% endverbatim %}>{{city.name}}</option>    
+					{% endfor %}
+				</select>
+
+			</div>

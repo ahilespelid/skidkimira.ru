@@ -1,0 +1,12 @@
+<ul>
+{% for menuitem in menu %}
+<li><a {% if menuitem.id == activeid%}class=active{% endif %} href="/{{menulink}}/{{menuitem.id}}">{{menuitem.name}}</a>
+{% if menuitem.id == activeid %}
+    <ul>
+    {% for submenuitem in submenu %}
+        
+        <li {% verbatim %}{% if content.subcat.id =={% endverbatim %}{{submenuitem.id}}{% verbatim %} %}class="active"{%endif%}{% endverbatim %}><a href="/{{submenulink}}/{{submenuitem.id}}">{{submenuitem.name}}</a></li>
+    {% endfor %}
+    </ul>
+{%endif%}</li>
+{% endfor %}</ul>

@@ -1,0 +1,35 @@
+
+    <div class="col-md-6">
+        <div class="portlet box light-grey">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>Торговые центры
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover datatable" id="shoppingCenter">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Название</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in shoppingCenters %}
+                        <tr id="{{data.id}}">
+                            <td>
+                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                    <input type="checkbox" class="checkboxes" shoppingCenterId="{{data.id}}" value="{{data.id}}">
+                                    <span></span>
+                                </label></td>
+                            <td>{{data.name}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>              
+                </table>
+                <br>
+                <button id="saveCompanyShoppingCenter" type="button" class="btn green" onClick="return false;">Сохранить</button>  
+            </div>
+        </div>
+    </div>
+

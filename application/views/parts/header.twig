@@ -1,0 +1,11 @@
+	<header class="clearfix">
+
+		<a  href="/"><img src="{{base_url()}}assets/img/logo.png" alt=""></a>
+		{% if searchtype %}
+		<form action="/search">
+			<input type="hidden" name="searchtype" value="{{searchtype}}"/>
+			<input type="text" name="search" placeholder="По имени" required>
+			<input type="submit">
+		</form>
+		{% endif %}
+	</header>

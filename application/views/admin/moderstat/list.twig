@@ -1,0 +1,75 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+<h1>Список {% if type == 'discount' %}скидок{% elseif type == 'company'%}компаний{% elseif type == 'companycitydescription'%}описаний компаний{% elseif type == 'comment'%}комментариев{% elseif type == 'news'%}новостей{% endif %} модератора</h1>
+<h2>Фильтрация</h2>
+
+<div class="row">
+<form>
+                                <div class="col-md-4">
+                                <label class="col-md-3 control-label">Начальная дата <span class="required">*</span></label>
+                                    <div class="input-group input-medium date date-pick" data-date-format="yyyy-mm-dd" data-date-start-date="-300d" >
+                                        <input type="text" class="form-control" data-required="1" name="startDate"  value="{{  "now"|date("Y-m-d") }}" >
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                <label class="col-md-3 control-label">Конечная дата <span class="required">*</span></label>
+                                    <div class="input-group input-medium date date-pick" data-date-format="yyyy-mm-dd">
+                                        <input type="text" class="form-control" data-required="1" name="endDate"  data-date-start-date="+0d" value="{{  "now"|date("Y-m-d") }}" >
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                <button type="submit" class="btn blue">Фильтровать</button>
+                                </div>
+                                
+</form>                                
+</div>
+<br/><br/><br/>
+<table cellpadding="0" cellspacing=10 width="100%" class="table table-bordered table-striped datatable">
+    <thead>
+        <tr>
+            {% for val in list['0']|keys %}
+                <th>{{val}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for stat in list %}
+        <tr>
+        
+            {% for val in stat|keys %}
+                <td>{% if type == 'discount' and val == 'name' %}
+                <a href="/admin/discount/{{stat.discountId}}" target="_blank">{{stat[val]}}</a>
+            {% elseif type == 'company' and val == 'name' %}
+                <a href="/admin/company/{{stat.companyId}}" target="_blank">{{stat[val]}}</a>
+            {% elseif type == 'companycitydescription' and val == 'name' %}
+                <a href="/admin/company/{{stat.companyId}}" target="_blank">{{stat[val]}}</a>                
+            {% else %}{{stat[val]}}
+            {% endif %}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}        
+    </tbody>
+</table>
+{% endblock %}
+{% block addjs %}
+<script>
+        if (jQuery().datepicker) {
+            $('.date-pick').datepicker({
+                rtl: App.isRTL(),
+                startDate: '-500d',
+                autoclose: true
+            });
+            $('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
+        }
+</script>
+{% endblock %}

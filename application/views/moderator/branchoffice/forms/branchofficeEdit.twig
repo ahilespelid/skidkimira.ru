@@ -1,0 +1,304 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+            <div class="row">
+				<div class="col-md-12">
+					<div class="portlet box light-grey">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-globe"></i>{{title}}
+							</div>
+						</div>
+						<div class="portlet-body form">
+                            <form id="table" class="form-horizontal" role="form" method="POST">
+                                <div class="form-body">
+                                
+                                
+                                {% if not new %}
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Id</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="id" value="{{record.id}}" readonly> 
+                                            
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="companyId" value="{{companyId}}">
+                                {% else %}
+                                    <input type="hidden" class="form-control" name="companyId" value="{{companyId}}">
+                                    <input type="hidden" class="form-control" name="siteUserId" value="{{moderatorId}}" >
+                                {% endif %}
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Адрес <span class="required">*</span></label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" data-required="1" id="address" onblur="refreshPoint();" name="address" value="{{ record.address ? record.address : '' }}"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Ближайшее метро</label>
+                                                                        
+                                        <div class="col-md-9" id="metroStations">
+                                            {% for m in record.metros %}
+                                                {{m.name}}</br>
+                                            {% endfor %}                                    
+                                        </div>          
+                                        <input type=hidden id="metroStationsData" name="metroStationsData"/>                                                                      
+                                    </div>                                    
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Телефон <span class="required">*</span></label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" data-required="1" name="phone" value="{{ record.phone ? record.phone : '495' }}"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">График работы </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="schedule" value="{{ record.schedule ? record.schedule : '' }}"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Широта</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="latitude" name="latitude" value="{{ record.latitude ? record.latitude : '' }}"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Долгота</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="longitude" name="longitude" value="{{ record.longitude ? record.longitude : '' }}"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Город</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="city" name="cityId">
+                                                {% for city in cities %}
+                                                    {% if city.id == record.cityId or (not record.cityId and city.id == 1) %}
+                                                        <option selected value="{{city.id}}">{{city.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{city.id}}">{{city.name}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Категория</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="categoryId">
+                                                {% for category in categories %}
+                                                    {% if category.id == record.categoryId %}
+                                                        <option selected value="{{category.id}}">{{category.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{category.id}}">{{category.name}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button id="saveBtn" type="submit" class="btn green">Сохранить</button>
+                                            <button type="button" class="btn default" onClick="window.opener.location.reload();window.close();">Закрыть</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="YMapsID" style="width:600px;height:400px; margin: 0 auto;"></div>
+
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+{% block addjs %}
+<script type="text/javascript" src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"></script>
+<script>
+var map;
+var placemark;
+var metros = [];
+
+// Обработчики успшеного и неудачного завершения выполнения запроса
+var listenerMetroLoad, listenerMetroFault;
+
+
+function createMap(mapId, center) {
+	if (center == undefined) {
+		center = [55.76, 37.64];
+	}
+	
+	var map = new ymaps.Map(mapId, {center: center, zoom: 7, behaviors: ["default", "scrollZoom"]});
+    
+	map.controls.add('mapTools');
+	map.controls.add('typeSelector');
+	map.controls.add('zoomControl');
+	map.controls.add('scaleLine');
+	
+	return map;
+}
+
+function pointFromString (val) {
+	var parts = val.split(',');
+	return [parseFloat(parts[0]), parseFloat(parts[1])];
+}
+
+
+$(function() {
+    console.log('awwww');
+	ymaps.ready(initMap);
+	$('#city').bind('change', refreshPoint);
+});
+
+function initMap() {
+	//map functionality
+    document.getElementById('latitude').disabled = true;
+	document.getElementById('longitude').disabled = true;
+	//document.getElementById('address').disabled = true;
+	
+	var lat = document.getElementById('latitude').value;
+	var lng = document.getElementById('longitude').value;
+	
+	map = createMap("YMapsID");
+
+	// Создаем метку.
+	placemark = new ymaps.Placemark([parseFloat(lat), parseFloat(lng)], 
+		{}, 
+		{draggable: true}
+	);
+
+	// Добавляет метку на карту
+	map.geoObjects.add(placemark);
+    
+	placemark.events.add('drag', function(e) {
+    	var thisPlacemark = e.get('target');
+    	var coords = thisPlacemark.geometry.getCoordinates();
+    	
+    	document.getElementById('latitude').value = coords[0];
+    	document.getElementById('longitude').value = coords[1];
+    });
+	
+	placemark.events.add('dragend', function(e) {
+		fillAddress();
+    	refreshMetros();
+    });
+    
+	if (lat != null && lng != null && lat.length > 1 && lng.length > 1) {
+		map.setCenter([parseFloat(lat), parseFloat(lng)], 12);
+		placemark.geometry.setCoordinates([parseFloat(lat), parseFloat(lng)]);
+	} else {
+		displayCityCenter();
+	}
+	
+	refreshMetros();
+}
+
+function displayCityCenter() {
+	var adr = $("#city option:selected").html();
+	var myGeocoder = ymaps.geocode(adr, {kind: 'locality', results: 1});
+	myGeocoder.then(
+	    function (res) {
+	        if (res.geoObjects.getLength() > 0) {
+				var coords = res.geoObjects.get(0).geometry.getCoordinates();
+
+				document.getElementById('latitude').value = coords[0];
+	        	document.getElementById('longitude').value = coords[1];
+				
+				map.setCenter(coords);
+				placemark.geometry.setCoordinates(coords);
+				
+				refreshMetros();
+			}
+	    },
+	    function (err) {
+	        // обработка ошибки
+	    }
+	);
+}
+
+function refreshPoint() {
+	var adr = $("#city option:selected").html() + ", " + $("#address").val();
+	var myGeocoder = ymaps.geocode(adr, {kind: 'house', results: 1});
+	myGeocoder.then(
+	    function (res) {
+	        if (res.geoObjects.getLength() > 0) {
+				var coords = res.geoObjects.get(0).geometry.getCoordinates();
+
+				document.getElementById('latitude').value = coords[0];
+	        	document.getElementById('longitude').value = coords[1];
+				
+				map.setCenter(coords);
+				placemark.geometry.setCoordinates(coords);
+				
+				refreshMetros();
+			}
+	    },
+	    function (err) {
+	        // обработка ошибки
+	    }
+	);
+}
+
+function refreshMetros() {
+	// Очистка предыдущих результатов
+	while (metros.length > 0) {
+    	map.geoObjects.remove(metros.pop());
+    }
+
+    var myGeocoder = ymaps.geocode(placemark.geometry.getCoordinates(), {kind: 'metro', results: 3});
+    myGeocoder.then(
+        function (res) {
+            $('#metroStations').html('');
+        	$('#metroStationsData').val('');
+        	
+            var names = "";
+            var data = "";
+            while (res.geoObjects.getLength() > 0) {
+            	var station = res.geoObjects.get(0);
+            	var stationName = station.properties.get('name').replace("метро ", "");
+            	
+            	station.properties.set('iconContent', "M");
+            	station.options.set('preset', 'twirl#redStretchyIcon');
+            	
+            	map.geoObjects.add(station);
+                metros.push(station);
+            	
+            	if (names.indexOf(stationName + "<br/>") < 1) {
+                	names += stationName + "<br/>";
+                	data  += stationName + "||" + station.geometry.getCoordinates()[0] + "||" + station.geometry.getCoordinates()[1] + "<>";
+            	}
+            }
+            
+            $('#metroStations').html(names);
+        	$('#metroStationsData').val(data);
+        },
+        function (err) {
+        	$('#metroStations').html('');
+        	$('#metroStationsData').val('');
+        }
+    );
+}
+
+function fillAddress() {
+	if (placemark != null) {
+		var myGeocoder = ymaps.geocode(placemark.geometry.getCoordinates(), {kind: 'house', results: 1});
+		myGeocoder.then(
+		    function (res) {
+		        if (res.geoObjects.getLength() > 0) {
+		        	document.getElementById('address').value = res.geoObjects.get(0).properties.get('text'); 
+		        }
+		    },
+		    function (err) {
+		        // обработка ошибки
+		    }
+		);
+	}
+}
+
+function enableFields() {
+	document.getElementById('latitude').disabled = false;
+	document.getElementById('longitude').disabled = false;
+	//document.getElementById('address').disabled = false;
+	return true;
+}
+</script>
+{% endblock %}

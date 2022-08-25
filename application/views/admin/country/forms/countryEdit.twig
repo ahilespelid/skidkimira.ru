@@ -1,0 +1,17 @@
+{% extends "admin/parts/form.twig" %}
+{% block data %}
+    {% if not new %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Id</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="id" value="{{record.id}}" readonly> 
+            </div>
+        </div>
+    {% endif %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Название</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="name" value="{{record.name}}"> 
+            </div>
+        </div>     
+{% endblock %}

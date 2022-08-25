@@ -1,0 +1,23 @@
+{% extends "admin/parts/table.twig" %}
+{% block data %}
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Тип</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in records %}
+        <tr id="{{data.id}}" class="odd gradeX">
+            <td>{{data.email}}</td>
+            <td>{{data.type}}</td>
+            <td>
+                <a href="{{site_url()}}auth/edit_user_custom/{{data.id}}" target="_blank" class="btn btn-outline purple btn-sm"><i class="fa fa-pencil-square-o"></i> Редактировать </a>         
+                <a href="{{site_url()}}admin/removeUser/{{data.id}}" target="_blank" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> Удалить </a>         
+            </td>            
+        </tr>
+        {% endfor %}
+    </tbody>  
+    {% include 'admin/parts/removeModal.twig' %}               
+{% endblock %}

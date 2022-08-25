@@ -1,0 +1,45 @@
+{% extends "admin/parts/table.twig" %}
+{% block data %}
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>description</th>
+        <th>advid</th>
+        <th>startDate</th>
+        <th>finishDate</th>
+        <th>viewUrl</th>
+        <th>thumbnailUrl</th>
+        <th>addDate</th>
+        <th>addUserId</th>
+        <th>couponTypeName</th>
+        <th>couponCategoryName</th>
+        <th>couponAdvCampaignName</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in records %}
+        <tr id="{{data.id}}">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.description}}</td>
+            <td>{{data.advid}}</td>
+            <td>{{data.startDate}}</td>
+            <td>{{data.finishDate}}</td>
+            <td>{{data.viewUrl}}</td>
+            <td>{{data.thumbnailUrl}}</td>
+            <td>{{data.addDate}}</td>
+            <td>{{data.addUserId}}</td>
+            <td>{{data.couponTypeName}}</td>
+            <td>{{data.couponCategoryName}}</td>
+            <td>{{data.couponAdvCampaignName}}</td>
+            <td>
+                <a href="{{site_url()}}{{uri_string()}}/{{data.id}}" target="_blank" class="btn btn-outline purple btn-sm"><i class="fa fa-pencil-square-o"></i> Редактировать </a>
+                <a href="#basic" data-toggle="modal" onClick="urlToModal('{{site_url()}}{{uri_string()}}/{{data.id}}/remove');" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> Удалить</a>         
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>  
+    {% include 'admin/parts/removeModal.twig' %}               
+{% endblock %}

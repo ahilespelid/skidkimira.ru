@@ -1,0 +1,22 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+<h1>Дополнительные разделы сайта</h1>
+{% if message %}<h2>{{message}}</h2>{% endif %}
+<form method="post">
+<table cellpadding="0" cellspacing=10 width="100%" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td align="right">URL:</td><td><input type=text name="url" value="{{page.url}}" size="40"/></td></tr>
+        <tr><td align="right">Заголовок:</td><td><input type=text name="title" value="{{page.title}}" size="40"/></td></tr>
+        <tr><td colspan="2">
+        <textarea class="ckeditor form-control" name="text" rows="10" cols="100" >{{page.text}}</textarea></td></tr>
+        
+        <tr><td></td><td><button type="submit" class="btn green">Сохранить</button></td></tr>        
+    </tbody>
+</table>
+</form>
+{% endblock %}

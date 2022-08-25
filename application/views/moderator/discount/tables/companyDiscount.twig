@@ -1,0 +1,40 @@
+    <div class="col-md-7">
+        <div class="portlet box light-grey">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>Акции
+                </div>
+                <div class="actions">
+                    <a href="" class="btn green" onClick="window.open('{{site_url()}}admin/companyDiscount/{{companyId}}/0/add');"><i class="fa fa-plus"></i> Добавить</a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover datatable" id="companyDiscountTable">
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Дата начала</th>
+                        <th>Дата окончания</th>
+                        <th>Город</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in discounts %}
+                        <tr id="{{data.id}}">
+                            <td>{{data.name|slice(0,35)}}...</td>
+                            <td>{{data.startDate}}</td>
+                            <td>{{data.finishDate}}</td>
+                            <td>{{data.cityName}}</td>
+                            <td>
+                                <a href="{{site_url()}}admin/companyDiscount/{{companyId}}/{{data.id}}" target="_blank" class="btn btn-outline purple btn-sm"><i class="fa fa-pencil-square-o"></i> Ред. </a>
+                                <a href="#" id="cloneDiscountBtn" class="btn btn-outline yellow btn-sm" onClick="cloneDiscount($(this),'{{companyId}}','{{data.id}}');return false;"><i class="fa fa-database"></i> Клонировать </a>
+                                <a href="#basic" data-toggle="modal" onClick="urlToModal('{{site_url()}}admin/discount/{{data.id}}/remove');" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> Удалить</a>         
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>  
+                </table>  
+            </div>
+        </div>
+    </div>

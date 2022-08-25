@@ -1,0 +1,124 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>{{meta.title}}</title>
+    <meta name="description" content="{{meta.description}}"/>
+    <meta name="keywords" content="{{meta.keywords}}"/>
+	{% if meta.canonical and meta.canonical != '' %}
+		<link rel="canonical" href="{{meta.canonical}}" />
+	{% endif %}
+	<meta charset='utf-8'/>
+	<meta name="yandex-verification" content="796aac31decc072f" />
+	<meta name="yandex-verification" content="eee01b84b542c555" />
+
+	<link rel="stylesheet" href="{{base_url()}}assets/css/reset.css">
+    <link rel="stylesheet" href="{{base_url()}}assets/js/jquery-ui.min.css">
+	<link rel="stylesheet" href="{{base_url()}}assets/css/style.css">
+	<link rel="stylesheet" href="{{base_url()}}assets/css/media.css">
+
+	<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{base_url()}}assets/css/font-awesome.min.css">
+<!-- Yandex.RTB -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+
+</head>
+
+<body>
+		<noindex>
+		{{adverts.allpages_header|raw}}
+		</noindex>
+    {% include 'parts/header.twig'%}
+    {% include 'parts/menu_mobile.twig'%}
+
+	{% block content %}
+		{% include 'parts/mainpage.twig'%}
+	{% endblock%}
+	<div class="fwrap">
+
+		<footer>
+
+			<span>2022 © Скидкимира.ру</span>
+
+			<a href="mailto:saleskidkimira@yandex.ru">saleskidkimira@yandex.ru</a>
+			{{adverts.footer_counters|raw}}
+
+		</footer>
+
+	</div>
+
+	<script src="{{base_url()}}assets/js/jquery-1.12.2.min.js"></script>
+	<script src="{{base_url()}}assets/js/jquery-ui.min.js"></script>
+
+	<script src="{{base_url()}}assets/js/jquery.modal.js"></script>
+	<script src="{{base_url()}}assets/js/jquery-matchHeight.js"></script>
+	<script src="{{base_url()}}assets/js/common.js"></script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter41560414 = new Ya.Metrika({
+                    id:41560414,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/41560414" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter46600359 = new Ya.Metrika({
+                    id:46600359,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/46600359" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</html>
+{% endspaceless %}

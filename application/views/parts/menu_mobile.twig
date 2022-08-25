@@ -1,0 +1,61 @@
+
+	<div class="menu-mobile">
+
+		<ul class="cd-accordion-menu">
+
+			<li class="has-children">
+
+				<input type="checkbox" name ="group-1" id="group-1" >
+
+				<label for="group-1">Меню</label>
+
+		  		<ul>
+
+					<li class="has-children level2">					
+						<input type="checkbox" name ="sub-group-1" id="sub-group-1">						
+						<label for="sub-group-1">Акции и Скидки</label>
+						{% include 'parts/menus/discounts.html' %}
+					</li>
+
+
+		  			<li class="has-children level2">
+
+		  				<input type="checkbox" name ="sub-group-2" id="sub-group-2">
+
+						<label for="sub-group-2">Магазины</label>
+						{% include 'parts/menus/companies.html' %}
+
+		  			</li>
+
+		  			<li class="has-children level2">
+
+		  				<input type="checkbox" name ="sub-group-3" id="sub-group-3">
+
+						<label for="sub-group-3">Бренды</label>
+						{% include 'parts/menus/brands.html' %}
+
+		  			</li>
+		  			<li class="level1">
+					  	<a href="/catalogue/tradecenters">Торговые центры</a>
+		  			</li>
+		  			<li class="level1">
+					  	<a href="/catalogue/tradecenters">Дисконт и Сток-Центры</a>
+		  			</li>
+		  			<li class="has-children level2">
+
+		  				<input type="checkbox" name ="sub-group-4" id="sub-group-4">
+
+						<label for="sub-group-4">Интернет-магазины</label>
+						{% include 'parts/menus/webshops.html' %}
+
+		  			</li>		  			
+
+		  		</ul>
+
+			</li>
+
+
+		</ul> <!-- cd-accordion-menu --><br/>
+		{% include 'parts/menus/cities.html'%}
+	</div>
+    

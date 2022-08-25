@@ -1,0 +1,370 @@
+{%extends 'html.twig' %}
+{% set rusmonth = {'1':'января','2':'февраля','3':'марта','4':'апреля','5':'мая','6':'июня','7':'июля','8':'августа','9':'сентября','10':'октября','11':'ноября','12':'декабря',} %}
+{% block content %}
+<style type="text/css">
+.center .banner-width {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    vertical-align: top;
+    margin-right: 3px;    
+}
+@media screen and (max-width: 566px){
+.nomobile{display:none !important;}
+.onlymobile{
+    display:inherit !important;
+    position: relative;
+    width: 100%;
+    margin: 0 0 25px;
+}
+.center .banner-width {
+    width: 100%;
+    margin: 0;
+}
+.skidki-iz-kataloga{
+    margin: 0;
+}
+.skidki-iz-kataloga .skidka {
+    width: 100%!important;
+}
+.center h2:not(:first-child) {
+    margin-left: 14%;
+}}
+
+@media screen and (min-width: 567px) and (max-width: 701px) {.center .banner-width {width: 528px;} .nomobile{display:none !important;}}
+@media screen and (min-width: 701px) and (max-width: 742px) {.center .banner-width {width: 260px;} .nomobile{display:none !important;}}
+@media screen and (min-width: 742px) and (max-width: 801px) {.center .banner-width {width: 528px;}}
+@media screen and (min-width: 801px) and (max-width: 1091px){.center .banner-width {width: 260px;}}
+@media screen and (min-width: 1092px) {.center .banner-width {width: 100%;}}
+</style>
+<div class="content clearfix">
+
+		<div class="center kat">
+
+			<div class="banner-width">
+				<noindex>
+				{{adverts.top_fullwidth|raw}}
+				</noindex>
+			</div>
+
+				
+
+			<h1>{{content.company.name}}</h1>
+
+			<div class="yadirect-slon">
+				<noindex>
+				{{adverts.details_top|raw}}
+				</noindex>
+			</div>
+
+			<div class="open-catalog">
+				<div class="cat">
+				<div class="logotip" onclick="zoomlogo('{{base_url()}}images/company/{{content.company.logo}}');">
+
+					<img src="{{base_url()}}images/company/{{content.company.logo}}" alt="">
+
+				</div>
+				{% if content.company.urlk and content.company.urlk != '' %}
+				<div class="catal">
+					<a onclick="return showInFrame(this);" href="#" data-url="{{content.company.urlk}}">Каталог товаров</a>
+				</div>
+				{% endif %}
+				</div>
+				<div class="underlogodetail">
+					{% if adverts.underlogo_detail %}
+						<noindex>
+						{{adverts.underlogo_detail|raw}}
+						</noindex>
+					{% endif %}
+				</div>
+
+			</div>
+
+			<div class="opisanie-marki" style="width:58%;">
+				<div class="resizing-container">
+            		{{content.company.description|raw}}
+				</div>
+				<div class="pink view-all">
+					<a href="#">
+						<span class="drop-down">Показать еще</span>
+					</a>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+
+	<div class="onlymobile">
+		<noindex>
+		{{adverts.mobile_brands|raw}}
+		</noindex>
+	</div>
+
+
+
+			<h2>Текущие акции</h2>
+
+			<div class="skidki-iz-kataloga">
+
+				
+				
+                {% for discount in content.companydiscounts %}
+				<div class="skidka width-skidka">
+                    <a href="/discount/{{discount.id}}">
+					<div><img src="{{base_url()}}/images/discount/{{discount.image}}" alt="{{discount.name}}"/></div>
+
+					<p><span>{{discount.startDate|date("j")}} {{rusmonth[discount.startDate|date("n")]}} - {{discount.finishDate|date("j")}} {{rusmonth[discount.finishDate|date("n")]}} </span>
+                    <br>
+                    {{discount.name}}</p>
+					</a>
+				 {% if loop.index < 3%}
+					<div class="r-google">
+						<noindex>
+						{{adverts.catalog_item|raw}}
+						</noindex>
+					</div>
+				{% endif %}
+					<div class="razmer-skidki">
+                        {% if discount.discount > 0 %}
+						<span>-{{discount.discount}}%</span>
+                        {% else %}
+                        <span class="gift"><img src="{{base_url()}}/assets/img/akcii/gift.png" alt=""></span>
+                        {% endif %}
+
+					</div>
+				</div>
+                {% endfor %}
+
+			</div>
+
+            <div class="banner-width nomobile">
+                <noindex>
+                {{adverts.center_fullwidth|raw}}
+                </noindex>
+            </div>
+
+            <div class="onlymobile">
+                <noindex>
+<!-- Yandex.RTB R-A-141647-14 -->
+<div id="yandex_rtb_R-A-141647-14"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-14',
+    blockId: 'R-A-141647-14'
+  })
+})</script>
+                </noindex>
+            </div>
+
+			{% if content.similardiscounts %}
+			<h2 class="skidka-320">Похожие предложения</h2>
+
+			<div class="onlymobile">
+				<noindex>
+				{{adverts.mobile_catalogitem2|raw}}
+				</noindex>
+			</div>			
+
+			<div class="skidki-iz-kataloga">
+
+
+                {% for discount in content.similardiscounts %}
+				<div class="skidka width-skidka">
+                    <a href="/discount/{{discount.id}}">
+					<div><img src="{{base_url()}}images/discount/{{discount.image}}" alt="{{discount.name}}"/></div>
+
+					<p><span>{{discount.startDate|date("j")}} {{rusmonth[discount.startDate|date("n")]}} {% if "now"|date("Y") != discount.startDate|date("Y") %}{{discount.startDate|date("Y")}}{%endif%} - {{discount.finishDate|date("j")}} {{rusmonth[discount.finishDate|date("n")]}} {% if "now"|date("Y") != discount.finishDate|date("Y") %}{{discount.finishDate|date("Y")}}{%endif%}</span>
+                    <br>
+                    {{discount.name|slice(0,45)}}{% if discount.name|length > 45 %}...{% endif %}</p></a>
+
+					<div class="razmer-skidki">
+                        {% if discount.discount > 0 %}
+						<span>-{{discount.discount}}%</span>
+                        {% else %}
+                        <span class="gift"><img src="{{base_url()}}/assets/img/akcii/gift.png" alt=""></span>
+                        {% endif %}
+
+					</div>
+				</div>
+                {% endfor %}				
+
+			</div>
+			{% endif %}
+
+			<h2>Архив акций</h2>
+
+			<div class="skidki-iz-kataloga">
+
+                {% for discount in content.companydiscountsarchieve %}
+				<div class="skidka width-skidka">
+                    <a href="/discount/{{discount.id}}">
+					<div><img src="{{base_url()}}/images/discount/{{discount.image}}" alt="{{discount.name}}"/></div>
+
+					<p><span>{{discount.startDate|date("j")}} {{rusmonth[discount.startDate|date("n")]}} - {{discount.finishDate|date("j")}} {{rusmonth[discount.finishDate|date("n")]}} </span>
+                    <br>
+                    {{discount.name}}</p>
+					</a>
+
+					<div class="razmer-skidki">
+                        {% if discount.discount > 0 %}
+						<span>-{{discount.discount}}%</span>
+                        {% else %}
+                        <span class="gift"><img src="{{base_url()}}/assets/img/akcii/gift.png" alt=""></span>
+                        {% endif %}
+
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+
+
+			<div class="table-adress">
+
+
+
+				<table class="skidka-320">
+
+					<thead>
+
+						<tr>
+
+							<td width="50%">Адрес</td>
+
+							<td width="13%">Метро</td>
+
+							<td>Телефон</td>
+
+							<td>Режим работы</td>
+
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+                        {% for branch in content.companybranches %}
+						<tr position="{{branch.latitude}},{{branch.longitude}}"  {% if loop.index > 10 %}class="hidemoreaddr"{%endif%}>
+
+							<td class="tdaddress" title="{{branch.address}}"><a href="javascript:showOnMap('{{branch.latitude}},{{branch.longitude}}',true);">{{branch.address}}</a></td>
+
+							<td>                            
+                            {% for metro in branch.metro %}
+                                <a href="javascript:showOnMap('{{metro.latitude}},{{metro.longitude}}');" title="{{metro.name}}"><img src="{{base_url()}}assets/img/metro.png" alt="{{metro.name}}"/></a>                            
+                            {% endfor %}
+                            </td>
+                            {% if branch.phone == '-----' or branch.phone=='' %}
+							<td><span>{{branch.phone}}</span></td>
+                            {%else%}
+                            <td class="branchphone"><span>{{branch.phone}}</span> <a href="#">показать номер</a></td>
+                            {%endif%}
+							<td>10 - 22</td>
+
+						</tr>
+                        
+                        {% endfor %}
+						{% if content.companybranches|length > 10 %}
+						<tr class="showmoreaddr"><td colspan=5><a href="#">Показать все</a><td></tr>
+						{% endif %}						
+					</tbody>
+
+				</table>
+
+			<!--div class="map-on-skidka">
+				<div style="width: 100%; height: 400px; margin: 0 auto;" id="YMapsID"></div>
+			</div-->
+			{% if content.company.siteAddress %}
+				<div class="some-info-table skidka-320">
+					<p>Официальный сайт:<a href="#">{{content.company.siteAddress}}</a></p>
+
+				</div>
+			{% endif %}
+			</div>
+
+			
+
+			
+
+			<h2 class="n">Похожие компании</h2>
+
+			<div class="match-brands n">
+				{% for company in content.similarcompanies %}
+					<a href="/company/{{company.id}}"><img src="{{base_url()}}images/company/{{company.logo}}" alt=""></a>
+				{% endfor %}
+			</div>
+
+			<div class="match-brands-mobile n">
+
+				<ul>
+				{% for company in content.similarcompanies %}
+					<li><a href="/company/{{company.id}}">{{company.name}}</a></li>
+				{% endfor %}
+				</ul>
+
+				
+
+			</div>
+
+			<div class="onlymobile">
+				<noindex>
+				{{adverts.mobile_catalogitem3|raw}}
+				</noindex>
+			</div>					
+
+
+
+			<h2 class="n m">Отзывы</h2>
+        
+        
+            {% for comment in content.companycomments%}
+                <div class="otzuv">
+
+                    <h5>{{comment.userName}}</h5>
+
+                    <p>{{comment.text}}</p>
+
+                </div>
+            {% endfor %}
+
+			<a href="" class="click-otzuv">Написать отзыв</a><br/><br/>
+
+			<div class="form-otzuv">
+
+				<form id="form-otzuv">
+                    <input type=hidden name=company value="{{content.company.id}}"/>
+                
+					<input id="form-otzuv-name" type="text" name="username" placeholder="Ваше имя">
+
+					<textarea name="text" id="form-otzuv-text" cols="30" rows="10" placeholder="Текст отзыва"></textarea>
+
+					<div class="captcha">
+
+						<div class="g-recaptcha" data-sitekey="6LdTyCYTAAAAANA_-c_G1aSHCo8jKPKZo9n0mryD"></div>
+
+					</div>
+
+					<input type="submit" value="Отправить">
+
+				</form>
+
+			</div>
+
+		</div>
+
+		
+
+
+		{% include 'parts/menu.twig'%}
+
+		{#
+        <aside class="side-right ksr">
+			<noindex>
+			{{adverts.right_banners|raw}}
+			</noindex>
+		</aside>
+        #}
+		
+
+	</div>
+<!--script type="text/javascript" src="//api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"></script>
+<script type="text/javascript" src="{{base_url()}}assets/js/maps.js"></script-->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

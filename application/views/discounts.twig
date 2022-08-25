@@ -1,0 +1,208 @@
+{%extends 'html.twig' %}
+{% set rusmonth = {'1':'января','2':'февраля','3':'марта','4':'апреля','5':'мая','6':'июня','7':'июля','8':'августа','9':'сентября','10':'октября','11':'ноября','12':'декабря',} %}
+{% block content %}
+<style type="text/css">
+.center .banner-width {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    vertical-align: top;
+    margin-right: 3px;    
+}
+@media screen and (max-width: 566px){
+.nomobile{display:none !important;}
+.onlymobile{
+    display:inherit !important;
+    position: relative;
+    width: 100%;
+    margin: 0 0 25px;
+}
+.center .banner-width {
+    width: 100%;
+    margin: 0;
+}
+.skidki-iz-kataloga{
+    margin: 0;
+}
+.skidki-iz-kataloga .skidka {
+    width: 100%!important;
+}
+.center h2:not(:first-child) {
+    margin-left: 14%;
+}}
+
+@media screen and (min-width: 567px) and (max-width: 701px) {.center .banner-width {width: 528px;} .nomobile{display:none !important;}}
+@media screen and (min-width: 701px) and (max-width: 742px) {.center .banner-width {width: 260px;} .nomobile{display:none !important;}}
+@media screen and (min-width: 742px) and (max-width: 801px) {.center .banner-width {width: 528px;}}
+@media screen and (min-width: 801px) and (max-width: 1091px){.center .banner-width {width: 260px;}}
+@media screen and (min-width: 1092px) {.center .banner-width {width: 100%;}}
+</style>
+	<div class="content clearfix">
+
+		<div class="center kat">
+
+        <div class="banner-width">
+				<noindex>
+				{{adverts.top_fullwidth|raw}}
+				</noindex>
+        </div>
+
+
+			<h1 style="float:left;">{{content.title|raw}}
+			</h1>
+<div class="rblock">
+						<noindex>
+						{{adverts.top_rightheader|raw}}
+						</noindex>
+</div>
+{% if content.cat.top_text and content.cat.top_text != '' %}
+<br style="clear:both;"/>
+{{content.cat.top_text|raw}}
+<br/>
+{% endif %}
+<br style="clear:both;"/>
+			<div class="skidki-iz-kataloga">
+
+                {% for discount in content.discounts %}
+				<div class="skidka width-skidka">
+                    <a href="/discount/{{discount.id}}">
+					<div><img src="{{base_url()}}/images/discount/{{discount.image}}" alt="{{discount.name}}"/></div>
+
+					<p><span>{{discount.startDate|date("j")}} {{rusmonth[discount.startDate|date("n")]}} {% if "now"|date("Y") != discount.startDate|date("Y") %}{{discount.startDate|date("Y")}}{%endif%} - {{discount.finishDate|date("j")}} {{rusmonth[discount.finishDate|date("n")]}} {% if "now"|date("Y") != discount.finishDate|date("Y") %}{{discount.finishDate|date("Y")}}{%endif%}</span>
+                    <br>
+                    {{discount.name|slice(0,45)}}{% if discount.name|length > 45 %}...{% endif %}</p></a>
+
+					{% if loop.index < 3 %}
+					<div class="r-google">
+						<noindex>
+						{{adverts.catalog_item|raw}}
+						</noindex>
+					</div>
+					{% endif %}
+
+					<div class="razmer-skidki">
+                        {% if discount.discount > 0 %}
+						<span>-{{discount.discount}}%</span>
+                        {% else %}
+                        <span class="gift"><img src="{{base_url()}}/assets/img/akcii/gift.png" alt=""></span>
+                        {% endif %}
+
+					</div>
+				</div>
+{% if loop.index == 12 %}
+    <div class="banner-width nomobile">
+            <noindex>
+            {{adverts.center_fullwidth|raw}}
+            </noindex>
+    </div>
+{% endif %}                
+{% if loop.index == 24 %}
+    <div class="banner-width nomobile">
+            <noindex>
+<!-- Yandex.RTB R-A-141647-17 -->
+<div id="yandex_rtb_R-A-141647-17"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-17',
+    blockId: 'R-A-141647-17'
+  })
+})</script>
+            </noindex>
+    </div>
+{% endif %}                
+{% if loop.index == 36 %}
+    <div class="banner-width nomobile">
+            <noindex>
+<!-- Yandex.RTB R-A-141647-18 -->
+<div id="yandex_rtb_R-A-141647-18"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-18',
+    blockId: 'R-A-141647-18'
+  })
+})</script>
+            </noindex>
+    </div>
+{% endif %}                
+{% if loop.index == 8 %}
+	<div class="onlymobile">
+		<noindex>
+		{{adverts.mobile_catalogitem|raw}}
+		</noindex>
+	</div>
+{% endif %}
+{% if loop.index == 16 %}
+	<div class="onlymobile">
+		<noindex>
+		{{adverts.mobile_catalogitem2|raw}}
+		</noindex>
+	</div>
+{% endif %}		
+{% if loop.index == 24 %}
+    <div class="onlymobile">
+        <noindex>
+        {{adverts.mobile_catalogitem3|raw}}
+        </noindex>
+    </div>
+{% endif %}                            
+{% if loop.index == 32 %}
+    <div class="onlymobile">
+        <noindex>
+<!-- Yandex.RTB R-A-141647-14 -->
+<div id="yandex_rtb_R-A-141647-14"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-14',
+    blockId: 'R-A-141647-14'
+  })
+})</script>
+        </noindex>
+    </div>
+{% endif %}                            
+                {% endfor %}
+	<div class="banner-width">
+			<noindex>
+			{{adverts.center_fullwidth|raw}}
+			</noindex>
+	</div>				
+{% if content.cat.bottom_text and content.cat.bottom_text != '' %}
+<br style="clear:both;"/>
+{{content.cat.bottom_text|raw}}
+{% endif %}	
+                <div class="pagination">
+
+					<ul class="clearfix">
+                        {{content.pagination|raw}}
+					</ul>
+
+				</div>                
+            </div>
+
+
+			<div class="kakoito-text">
+			<!--вывод текта для категории Акции и Скидки
+			{{additional.promotextbtm|raw}}  -->
+			</div>
+			<div class="kakoito-text">
+			<!--вывод текта для подкатегорий категории Акции и Скидки
+				{{add.promotextbtm|raw}} -->
+			</div>
+			<div class="kakoito-text">
+			<!--вывод текта для для подкаткегории подкатегорий категории Акции и Скидки
+				{{addsubtext.promotextbtm|raw}}-->
+			</div>
+
+		</div>
+
+		{% include 'parts/menu.twig'%}
+
+
+		{#  
+        <aside class="side-right">
+			<noindex>
+			{{adverts.right_banners|raw}}
+			</noindex>
+		</aside>
+        #}		
+	</div>		
+{% endblock %}

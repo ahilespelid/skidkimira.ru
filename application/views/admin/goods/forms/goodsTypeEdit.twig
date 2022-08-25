@@ -1,0 +1,38 @@
+{% extends "admin/parts/form.twig" %}
+{% block data %}
+    {% if not new %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Id</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="id" value="{{record.id}}" readonly> 
+            </div>
+        </div>
+    {% endif %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Название</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="name" value="{{record.name}}"> 
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Описание</label>
+            <div class="col-md-9">
+                <textarea class="form-control" rows="5" name="description" >{{record.description}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Подкатегория</label>
+            <div class="col-md-9">
+                <select class="form-control" name="goodsSubCategoryId">
+                    {% for goodsSubCategory in goodsSubCategories %}
+                        {% if goodsSubCategory.id == record.goodsSubCategoryId %}
+                            <option selected value="{{goodsSubCategory.id}}">{{goodsSubCategory.name}}</option>
+                        {% else %}
+                            <option value="{{goodsSubCategory.id}}">{{goodsSubCategory.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>      
+{% endblock %}
+        

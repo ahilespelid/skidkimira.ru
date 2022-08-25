@@ -1,0 +1,16 @@
+{% extends "admin/parts/companyTableSS.twig" %}
+{% block data %}
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Название</th>
+        <th>Категория</th>
+        <th>Email</th>
+        <th>символов всего</th>
+        <th>символов без HTML</th>
+        <th>Статус</th>
+        <th></th>
+    </tr>
+    </thead> 
+    {% include 'admin/parts/removeModal.twig' %}               
+{% endblock %}

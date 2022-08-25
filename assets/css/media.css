@@ -1,0 +1,432 @@
+.onlymobile{
+	display:none;
+}
+.nomobile{
+	display:inherit;
+}
+@media screen and (max-width: 1300px){
+
+	footer{
+
+		margin-left: 20px;
+
+		margin-right: 20px;
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1166px){
+	.center{
+		width: 50%;
+	}
+	.side-right{
+		width:23%;
+	}
+
+	header form{
+
+		width: 55%;
+
+	}
+
+	.menu li a{
+
+		font-size: 14px;
+
+	}
+
+	.logotip img{
+
+		width: 100%
+
+	}
+
+	.cat-bl{
+
+		width: 32%;
+
+	}
+}
+
+
+@media screen and (max-width: 800px){
+
+	.cd-accordion-menu label, .cd-accordion-menu a{
+
+		font-size: 18px;
+
+		font-weight: 700;
+
+	}
+
+	.part2 .inner-ul ul{
+
+		width: 33%;
+
+	}
+
+	.info2,.map2{
+
+		width: 48%;
+
+    	overflow: auto;
+
+	}
+
+	.form-otzuv,.otzuv,.click-otzuv,.n{
+
+		/*display: none; */ 
+
+	}
+
+	.side-left{
+
+		display: none;
+
+	}
+
+	.menu-mobile{
+
+		display: block;
+
+	}
+
+	header form{
+
+		width: 32%;
+
+	}
+
+	.center{
+
+		width: 65%;
+
+	}
+
+	.side-right{
+
+		width: 25%;
+
+	}
+
+	.content .kat{
+
+		width: 75%;
+
+	}
+
+	.ksr{
+
+		width: 24%;
+
+	}
+
+	.inner-ul .ul4{
+
+		display: none;
+
+	}
+
+	.inner-ul ul{
+
+		width: 32%;
+
+	}
+
+}
+
+@media screen and (max-width: 700px){
+
+	.side-right{
+
+		display: none;
+
+	}
+
+	.center{
+
+		width: 100%
+
+	}
+
+	.content .kat{
+
+		width: 100%;
+
+	}
+
+}
+
+@media screen and (max-width: 470px){
+.onlymobile{
+	display:inherit !important;
+}
+.skidki-iz-kataloga{
+    margin: 0 14%;
+}
+.nomobile{
+	display:none !important;
+}
+
+	.part .inner-ul{
+		    padding: 10px 0px;
+	}
+
+	.part .inner-ul  a{
+		word-break: break-all;
+		display: block;
+	}
+.info2, .map2 { width:100% !important;}
+
+	.part2 .inner-ul ul{
+
+		width: 100%;
+
+	}	
+.skidka-320>thead>tr>td{
+	white-space: normal !important;
+}
+
+.branchphone {
+    white-space: normal !important;
+}
+
+	.skidka>a>div>img{
+		max-width:100%;
+		max-height: 400px;
+	}
+	.skidka>a>div{
+		height:auto;
+		
+	}
+	header{
+		padding: 5px 5px;
+	}
+	.kakoito-text{
+
+		display: none;
+
+	}
+
+	.cat-bl{
+
+		width: 48%;
+
+	}
+
+	.last-action2{
+
+		display: block;
+
+	}
+
+	.yadirect-slon{
+
+		display: none;
+
+	}
+
+	.open-catalog{
+
+		width: 100%;
+
+		max-width: initial;
+
+		float: none;
+
+	}
+
+	.social{
+
+		display: none;
+
+	}
+
+	header form{
+
+		width: 30%;
+		margin-left:0;
+
+
+
+	}
+
+	header input[type="text"]{
+
+		/*border:none;*/
+
+	}
+
+	header input[type="submit"]{
+
+		right: -5px;
+
+	}
+
+	header input[type="text"]::-webkit-input-placeholder{
+
+		color:#fff;
+
+	}
+
+	.magaz img{
+
+		display: none;
+
+	}
+
+	.magaz{
+
+		display: block;
+
+	}
+
+	.match-brands{
+
+		display: none;
+
+	}
+
+	.match-brands-mobile{
+
+		display: block;
+
+	}
+
+	.rambler{
+
+		display: none;
+
+	}
+
+	footer a{
+
+		margin-left: 0;
+
+	}
+
+	footer span{
+
+		display: block;
+
+	}
+
+	header img{
+
+		width: 70%;
+
+	}
+
+	.skidki-iz-kataloga .skidka{
+
+		min-height: auto;
+
+		max-width: 100%;
+
+		margin-right: 0;
+
+		display: block;
+
+	}
+
+	.skidka >img{
+
+		display: none;
+
+	}
+
+	.inner-ul .ul3{
+
+		display: none;
+
+	}
+
+	.inner-ul ul{
+
+		width: 48%;
+
+	}
+
+	
+
+}
+
+@media screen and (max-width: 320px){
+
+
+	.info2,.map2{
+
+		width: 100%;
+
+    	overflow:visible;
+
+	}
+
+	.map2{
+
+		overflow-x: hidden;
+
+	}
+
+
+
+	.part2 .inner-ul ul{
+
+		width: 100%;
+
+	}
+
+
+
+	.form-otzuv,.otzuv,.m,.click-otzuv,.direct-and-adress{
+
+		display: block;
+
+	}
+
+	.skidka-320{
+
+		display: none;
+
+	}
+
+	.table-adress{
+
+		overflow-x: auto;
+
+	}
+
+	.table-adress table{
+
+		width: 150%;
+
+	}
+
+	header form{
+
+		margin-left: 0;
+
+	}
+
+	.small-reclam{
+
+		display: block;
+
+	}
+
+	.big-reclam{
+
+		display: none;
+
+	}
+
+}

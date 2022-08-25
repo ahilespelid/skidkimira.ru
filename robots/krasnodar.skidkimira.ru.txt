@@ -1,0 +1,20 @@
+User-agent: *
+Disallow: /*?wick*
+Disallow: /user/profile*
+Disallow: /rss/*
+Disallow: /goods/*
+Disallow: /coupon/*
+Disallow: /representative/*
+Disallow: /remember/*
+
+User-agent: Yandex
+Disallow: /*?wick*
+Disallow: /user/profile*
+Disallow: /rss/*
+Disallow: /goods/*
+Disallow: /coupon/*
+Disallow: /representative/*
+Disallow: /remember/*
+
+Host: https://krasnodar.skidkimira.ru
+Sitemap: https://krasnodar.skidkimira.ru/sitemap.xml

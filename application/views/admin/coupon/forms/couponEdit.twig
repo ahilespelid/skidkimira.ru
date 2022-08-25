@@ -1,0 +1,121 @@
+{% extends "admin/parts/form.twig" %}
+{% block data %}
+    {% if not new %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Id</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="id" value="{{record.id}}" readonly> 
+            </div>
+        </div>
+    {% endif %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Название</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="name" value="{{record.name}}"> 
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Описание</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="description"  value="{{record.description}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">advid</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="advid"  value="{{record.advid}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Дата начала</label>
+            <div class="col-md-9">
+                <div class="input-group input-medium date date-picker" data-date-format="dd.mm.yyyy" data-date-start-date="+0d">
+                    <input type="text" class="form-control" name="startDate" value="{{record.startDate}}" readonly="">
+                    <span class="input-group-btn">
+                        <button class="btn default" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Дата окончания</label>
+            <div class="col-md-9">
+                <div class="input-group input-medium date date-picker" data-date-format="dd.mm.yyyy" data-date-start-date="+0d">
+                    <input type="text" class="form-control" name="finishDate" value="{{record.finishDate}}" readonly="">
+                    <span class="input-group-btn">
+                        <button class="btn default" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Ссылка</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="viewUrl"  value="{{record.viewUrl}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Иконка</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="thumbnailUrl"  value="{{record.thumbnailUrlid}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Дата добавления</label>
+            <div class="col-md-9">
+                <input class="form-control input-medium date-picker" size="16"data-date-format="dd.mm.yyyy"  type="text" name="addDate" value="{{record.addDate}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Пользователь</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="addUserId"  value="{{record.addUserId}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Тип</label>
+            <div class="col-md-9">
+                <select class="form-control" name="couponTypeId">
+                    {% for couponType in couponTypes %}
+                        {% if couponType.id == record.couponTypeId %}
+                            <option selected value="{{couponType.id}}">{{couponType.name}}</option>
+                        {% else %}
+                            <option value="{{couponType.id}}">{{couponType.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Категория</label>
+            <div class="col-md-9">
+                <select class="form-control" name="couponCategoryId">
+                    {% for couponCategory in couponCategories %}
+                        {% if couponCategory.id == record.couponCategoryId %}
+                            <option selected value="{{couponCategory.id}}">{{couponCategory.name}}</option>
+                        {% else %}
+                            <option value="{{couponCategory.id}}">{{couponCategory.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Компания</label>
+            <div class="col-md-9">
+                <select class="form-control" name="couponAdvCampaignId">
+                    {% for couponAdvCampaign in couponAdvCampaigns %}
+                        {% if couponAdvCampaign.id == record.couponAdvCampaignId %}
+                            <option selected value="{{couponAdvCampaign.id}}">{{couponAdvCampaign.name}}</option>
+                        {% else %}
+                            <option value="{{couponAdvCampaign.id}}">{{couponAdvCampaign.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+{% endblock %}

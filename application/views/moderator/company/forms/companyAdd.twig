@@ -1,0 +1,178 @@
+{% extends "moderator/parts/form.twig" %}
+{% block data %}
+    {% if not new %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Id</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="id" value="{{record.id}}" readonly> 
+            </div>
+        </div>
+    {% else %}
+        <input type="hidden" class="form-control" name="siteUserId" value="1"> 
+        <input type="hidden" class="form-control" name="moderated" value="0">
+        <input type="hidden" class="form-control" name="accepted" value="0">
+    {% endif %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Название компании <span class="required">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-required="1" name="name" value="{{ record.name ? record.name : 'New company' }}""> 
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Адрес в строке заголовка</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="url"  value="{{record.url}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Адрес сайта</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="siteAddress"  value="{{record.siteAddress}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <div class="checkbox">
+                    <label>
+                    {% if record.hasWebShop == 1 %}
+                        <input type="checkbox" name="hasWebShop" value="{{record.hasWebShop}}" checked><span></span> Наличие интернет магазина </label>
+                    {% else %}
+                        <input type="checkbox" name="hasWebShop" value="0"><span></span> Наличие интернет магазина </label>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <div class="checkbox">
+                    <label>
+                    {% if record.hasWebShop == 1 %}
+                        <input type="checkbox" name="hasStockCenter" value="{{record.hasStockCenter}}" checked><span></span> Наличие сток центра </label>
+                    {% else %}
+                        <input type="checkbox" name="hasStockCenter" value="0"><span></span> Наличие сток центра </label>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Короткое описание компании </label>
+            <div class="col-md-9">
+                <textarea class="form-control" rows="3" name="description">{{record.description}}</textarea>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-3 control-label">Рекламный код от AdmitAd </label>
+            <div class="col-md-9">
+                <textarea class="form-control" rows="3" name="admitadCode">{{record.admitadCode}}</textarea>
+            </div>
+        </div>    
+        <div class="form-group">
+            <label for="exampleInputFile1" class="col-md-3 control-label">Логотип</label>
+            <div class="col-md-9">
+                {% if record.logo%}
+                    <img src="http://skidkimira.ru/images/company/{{record.logo}}">
+                {% endif%}
+                <input type="file" id="exampleInputFile1" name="logo" style="margin-top: 10px">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Отрасль</label>
+            <div class="col-md-9">
+                <select class="form-control" name="speciality">
+                    {% for speciality in specialities %}
+                        {% if speciality.value == record.speciality %}
+                            <option selected value="{{speciality.value}}">{{speciality.name}}</option>
+                        {% else %}
+                            <option value="{{speciality.value}}">{{speciality.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div> 
+        </div> 
+        <div class="form-group">
+            <label class="col-md-3 control-label">Категория</label>
+            <div class="col-md-9">
+                <select class="form-control" name="categoryId">
+                    {% for category in categories %}
+                        {% if category.id == record.categoryId %}
+                            <option selected value="{{category.id}}">{{category.name}}</option>
+                        {% else %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+         <div class="form-group">
+            <label class="col-md-3 control-label">Тип компании</label>
+            <div class="col-md-9">
+                <select class="form-control" name="companyType">
+                    {% for companyType,value in companyTypes %}
+                        {% if companyType == record.companyType %}
+                            <option selected value="{{companyType}}">{{value}}</option>
+                        {% else %}
+                            <option value="{{companyType}}">{{value}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Приоритет (от 0 до 100) <span class="required">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-required="1" name="priority"  value="{{ record.priority ? record.priority : 0 }}">
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-3 control-label">HTML Title </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="htmlTitle"  value="{{record.htmlTitle}}">
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-3 control-label">HTML Description </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="htmlDescription"  value="{{record.htmlDescription}}">
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-3 control-label">HTML Keywords </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="htmlKeywords"  value="{{record.htmlKeywords}}">
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-3 control-label">HTML Canonical link </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="htmlCanonicalLink"  value="{{record.htmlCanonicalLink}}">
+            </div>
+        </div> 
+        <div class="form-group">
+            <label for="exampleInputFile1" class="col-md-3 control-label">Фотографии компании</label>
+            <div class="col-md-9">
+                {% for companyPhoto in companyPhotos %}
+                    <img src="http://skidkimira.ru/images/company/{{companyPhoto.photo}}">
+                {% endfor %}
+                <input type="file" id="exampleInputFile1" name="companyPhoto" style="margin-top: 10px">
+                <br>
+            </div>
+        </div>
+    {% if new %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Город </label>
+            <div class="col-md-9">
+                <select class="form-control input-medium input-sm" name="cityCityId">
+                    {% for city in cities %}
+                        <option value="{{city.id}}">{{city.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-md-3 control-label">Описание HTML</label>
+            <div class="col-md-9">
+                <textarea id="cityDescription" class="ckeditor form-control" rows="10" name="cityDescription"></textarea>
+            </div>
+        </div> 
+    {% endif %}
+{% endblock %}

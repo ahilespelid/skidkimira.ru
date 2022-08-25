@@ -1,0 +1,38 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+<h1>{{lang('index_heading')}} </h1>
+<p>{{lang('index_subheading')}}</p>
+
+<div id="infoMessage">{{message|raw}}</div>
+
+<table cellpadding="0" cellspacing=10 width="100%" class="table table-bordered table-striped">
+<thead>
+	<tr>
+		<th>{{lang('index_fname_th')}}</th>
+		<th>{{lang('index_lname_th')}}</th>
+		<th>{{lang('index_email_th')}}</th>
+		<th>{{lang('index_groups_th')}}</th>
+		<th>{{lang('index_status_th')}}</th>
+		<th>{{lang('index_action_th')}}</th>
+	</tr>
+</thead>
+<tbody>
+	{% for user in users %}
+		<tr>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+			<td>
+				{% for group in user.groups %}
+					<a href="{{"/auth/edit_group/"~group.id }}">{{group.name}}</a><br />
+                {% endfor %}
+			</td>
+			<td>{% if user.active %}<a href="/auth/deactivate/{{user.id}}">{{lang('index_active_link')}}</a>{% else %}<a href="/auth/activate/{{user.id}}">{{lang('index_inactive_link')}}</a>{% endif %}</td>
+			<td><a href="/auth/edit_user/{{user.id}}">Edit</a></td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>
+
+<p><a href="/auth/create_user">{{lang('index_create_user_link')}}</a> | <a href="auth/create_group">{{lang('index_create_group_link')}}</a></p>
+{% endblock %}

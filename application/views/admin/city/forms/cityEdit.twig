@@ -1,0 +1,49 @@
+{% extends "admin/parts/form.twig" %}
+{% block data %}
+    {% if not new %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Id</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="id" value="{{record.id}}" readonly> 
+            </div>
+        </div>
+    {% endif %}
+        <div class="form-group">
+            <label class="col-md-3 control-label">Название</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="name" value="{{record.name}}"> 
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Название Где</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="nameWhere"  value="{{record.nameWhere}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Под домен</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="subDomain"  value="{{record.subDomain}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Страна</label>
+            <div class="col-md-9">
+                <select class="form-control" name="countryId">
+                    {% for country in countries %}
+                        {% if country.id == record.countryId %}
+                            <option selected value="{{country.id}}">{{country.name}}</option>
+                        {% else %}
+                            <option value="{{country.id}}">{{country.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Название Чего</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="nameWhich"  value="{{record.nameWhich}}">
+            </div>
+        </div>   
+{% endblock %}

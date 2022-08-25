@@ -1,0 +1,117 @@
+{%extends 'html.twig' %}
+{% block content %}
+<div class="content clearfix">
+
+		<div class="center kat">
+
+			<div class="banner-width">
+				<noindex>
+				{{adverts.top_fullwidth|raw}}
+				</noindex>
+			</div>
+
+				
+
+			<h1>{{content.brand.name}}</h1>
+
+			<div class="yadirect-slon">
+				<noindex>
+				{{adverts.details_top|raw}}
+				</noindex>
+			</div>
+
+			<div class="open-catalog">
+
+				<div class="logotip" onclick="zoomlogo('{{base_url()}}/images/company/{{content.brand.logo}}');">
+
+					<img src="{{base_url()}}images/company/{{content.brand.logo}}" alt="">
+
+				</div>
+
+				<div class="r-google">
+					{% if adverts.underlogo_detail %}
+						<noindex>
+						{{adverts.underlogo_detail|raw}}
+						</noindex>
+					{% endif %}
+				</div>
+				{% if content.brand.siteAddress %}
+				<div class="catal">
+
+					<a target="_blank" href="{{content.brand.siteAddress}}">Перейти в магазин</a>
+
+				</div>
+				{% endif %}
+			</div>
+
+
+			<div class="opisanie-marki" style="width:58%;">
+				<div class="resizing-container">
+            		{{content.brand.description|raw}}
+				</div>
+				<div class="pink view-all">
+					<a href="#">
+						<span class="drop-down">Показать еще</span>
+					</a>
+					<div class="clear"></div>
+				</div>
+			</div>
+		<div class="onlymobile">
+			<noindex>
+			{{adverts.mobile_brands|raw}}
+			</noindex>
+		</div>		
+			<h2>Магазины {{content.brand.name}}</h2>
+            <div class="magazu-marki">
+                {% for shop in content.brandcompanies %}
+                <a href="/company/{{shop.id}}">
+                    <div class="magaz">
+                        <img src="{{base_url()}}images/company/{{shop.logo}}" alt="">
+                        <p>{{shop.name}}</p>
+                    </div>                
+                </a>
+                {% endfor %}
+
+			</div>
+            <h2>Похожие бренды</h2>
+            <div class="match-brands">
+				{% for brand in content.similarbrands %}
+					<a href="/brand/{{brand.id}}"><img src="{{base_url()}}images/company/{{brand.logo}}" alt="{{brand.name}}"></a>
+				{% endfor %}
+			</div>
+            <div class="match-brands-mobile">
+
+				<ul>
+				{% for brand in content.similarbrands %}
+					<li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
+				{% endfor %}
+				</ul>
+
+				
+
+			</div>
+			<div class="kakoito-text">			
+			<!--	{{additional.promotextbtm|raw}}-->
+			</div>
+
+		</div>
+
+		
+
+
+		{% include 'parts/menu.twig'%}
+
+        {#
+		<aside class="side-right ksr">
+			<noindex>
+			{{adverts.right_banners|raw}}
+			</noindex>
+		</aside>
+        #}
+		
+
+	</div>
+    <script type="text/javascript" src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"></script>
+<script type="text/javascript" src="{{base_url()}}assets/js/maps.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

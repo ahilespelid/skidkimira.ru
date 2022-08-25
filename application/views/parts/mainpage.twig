@@ -1,0 +1,251 @@
+	<div class="content clearfix">
+
+		<div class="center">
+
+			<div class="banner-width">
+				<noindex>
+				{{adverts.top_fullwidth|raw}}
+				</noindex>
+			</div>
+
+			<h1>{{content.title|raw}}
+			</h1>
+		{#	<div class="categories">
+                {% for topcat in content.categories %}
+                <div class="cat-bl">
+					<div class="top-part">
+						<p><a href="{{site_url('/catalogue/discount/cat/'~topcat.id)}}">{{topcat.name}}</a></p>
+					</div>
+                    <div class="bottom-part">
+                        <ul>
+                            {% for subcat in topcat.subcats %}
+                                <li><a href="{{site_url('/catalogue/discount/subcat/'~subcat.id)}}">{{subcat.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>                
+                </div>
+				{% if loop.index == 5 %}
+				<div class="banner-width">
+					<noindex>
+					{{adverts.center_fullwidth|raw}}
+					</noindex>
+				</div>
+				{%endif%}
+
+                {% endfor %}
+
+
+				
+
+			</div>
+#}
+
+<div class="categories">
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/2">Мода и стиль</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[2].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/3">Товары для детей</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[3].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/7">Техника, электроника</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[7].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>    
+
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/5">Красота и здоровье</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[5].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+		<div class="onlymobile">
+			<noindex>
+			{{adverts.mobile_brands|raw}}
+			</noindex>
+		</div>		    
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/14">Супермаркеты, ТЦ</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[14].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>	
+    <div class="nomobile banner-width">
+        <noindex>
+        {{adverts.center_fullwidth|raw}}
+        </noindex>
+    </div>
+
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/4">Спорт товары</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[4].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/8">Товары для дома</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[8].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/9">Бытовые услуги</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[9].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="onlymobile">
+        <noindex>
+        {{adverts.center_fullwidth|raw}}
+        </noindex>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/10">Книги, канц-товары</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul></ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/11">Подарки и цветы</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[11].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/12">Путешествия</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[12].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/6">Автомобили, сервис</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[6].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/15">Прочее</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[15].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cat-bl">
+        <div class="top-part">
+            <p><a href="/catalogue/discount/cat/16">Домашние животные</a></p>
+        </div>
+        <div class="bottom-part">
+            <ul>
+                {% for subcat in content.categories[16].subcats %}
+                    <li><a href="/catalogue/discount/subcat/{{subcat.id}}">{{subcat.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+		<div class="onlymobile">
+			<noindex>
+			{{adverts.mobile_brands|raw}}
+			</noindex>
+		</div>		
+    
+</div>
+			
+
+			<div class="kakoito-text">
+			
+				<!--{{smth.smthText|raw}} //текст каталог Владимира контроллер Welcome.php public_function index() {'smth' => array}...-->
+				{{additional.promotextbtm|raw}}
+			</div>
+
+		</div>
+
+		{% include 'parts/menu.twig'%}
+
+        {#
+		<aside class="side-right">
+				<noindex>
+				{{adverts.right_banners|raw}}
+				</noindex>
+		</aside>
+        #}		
+	</div>		

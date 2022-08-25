@@ -1,0 +1,113 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+            <div class="row">
+            {% include 'admin/parts/uploadImageModal.twig' %}
+				<div class="col-md-12">
+					<div class="portlet box light-grey">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-globe"></i>{{title}}
+							</div>
+						</div>
+						<div class="portlet-body form">
+                            <form id="table" class="form-horizontal" role="form" method="POST">
+                                <div class="form-body">
+                                {% if not new %}
+                                    <input type="hidden" id="id" class="form-control" name="id" value="{{record.id}}" >
+                                    <input type="hidden" class="form-control" name="companyId" value="{{record.companyId}}">  
+                                {% else %}
+                                    <input type="hidden" class="form-control" name="companyId" value="{{cName.id}}"> 
+                                {% endif %}
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Имя компании</label>
+                                            <div class="col-md-9">
+                                            {% if not new %}
+                                                <input type="text" class="form-control" name="companyName" value="{{record.companyName}}"> 
+                                            {% else %}
+                                                <input type="text" class="form-control" name="companyName" value="{{cName.name}}"> 
+                                            {% endif %}    
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Категория компании</label>
+                                        <div class="col-md-9">
+                                            {% if not new %}
+                                                <input type="hidden" class="form-control" name="companyCategoryId" value="{{record.companyCategoryId}}"> 
+                                                <input type="text" class="form-control" value="{{record.categoryName}}"> 
+                                            {% else %}
+                                                <input type="hidden" class="form-control" name="companyCategoryId" value="{{cName.categoryId}}"> 
+                                                <input type="text" class="form-control" value="{{cName.categoryName}}"> 
+                                            {% endif %}  
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Номер каталога компании</label>
+                                        <div class="col-md-9">
+                                            {% if not new %}
+                                                <input type="text" class="form-control" name="name" value="{{record.name}}" readonly> 
+                                            {% else %}
+                                                <input type="text" class="form-control" name="name" value="{{name}}" readonly> 
+                                            {% endif %} 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Срок действия</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="validity" value="{{record.validity}}"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    {% if not new %}
+                                        <label class="col-md-3 control-label">Логотип</label>
+                                        <input type="hidden" id="companyCatalogLogoInput" class="form-control" name="logo" value="{{record.logo}}" > 
+                                        <div class="col-md-9">
+                                             <img id="companyCatalogLogo" src="{{site_url()}}{{record.logo}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-md-3 control-label">Загрузить </label>
+                                        <div class="col-md-9">
+                                            <a href="#uploadImage" data-toggle="modal" class="btn btn-outline green" onClick="$('#imageUploadType').val('companyCatalogLogo');$('#imageDestinationId').val({{record.companyId}});$('#companyCatalogName').val({{record.name}});"><i class="fa fa-upload"></i> Загрузить</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Изображения каталога</label>
+                                        <div class="col-md-9" id="companyCatalogImageDiv">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Загрузить Изображения</label>
+                                        <div class="col-md-9">
+                                            <a href="#uploadImage" data-toggle="modal" class="btn btn-outline green" onClick="$('#imageUploadType').val('companyCatalogImage');
+                                            $('#imageDestinationId').val({{record.id}});$('#companyCatalogName').val({{record.name}});$('#companyCatalogCompanyId').val({{record.companyId}});"><i class="fa fa-upload"></i> Загрузить </a>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                        <label class="col-md-3 control-label">Логотип</label>
+                                        <input type="hidden" id="companyCatalogLogoInput" class="form-control" name="logo" value="{{record.logo}}" > 
+                                        <div class="col-md-9">
+                                             <img id="companyCatalogLogo" src="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-md-3 control-label">Загрузить </label>
+                                        <div class="col-md-9">
+                                            <a href="#uploadImage" data-toggle="modal" class="btn btn-outline green" onClick="$('#imageUploadType').val('companyCatalogLogo');$('#imageDestinationId').val({{cName.id}});$('#companyCatalogName').val({{name}});"><i class="fa fa-upload"></i> Загрузить</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button id="saveBtn" type="submit" class="btn green">Сохранить</button>
+                                            <button type="button" class="btn default" onClick="window.opener.location.reload();window.close();">Закрыть</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "admin/parts/table.twig" %}
+{% block data %}
+            	<thead>
+            	<tr>
+            	   <th>id</th>
+            	   <th>id ТЦ</th>
+                   <th>id Компании</th>
+                   <th>Категория</th>
+                   <th></th>
+            	</tr>
+            	</thead>
+            	<tbody>
+                   {% for data in records %}
+                    <tr id="{{data.id}}" class="odd gradeX">
+                        <td>{{data.id}}</td>
+                        <td>{{data.ShppingCenterId}}</td>
+                        <td>{{data.CompanyId}}</td>
+                        <td>{{data.ShoppingCategoryName}}</td>
+                        <td>
+                            <a href="{{site_url()}}{{uri_string()}}/{{data.id}}" target="_blank" class="btn btn-outline purple btn-sm black"><i class="fa fa-pencil-square-o"></i> Редактировать </a>
+                            <a href="{{site_url()}}{{uri_string()}}" onClick="$.get('{{site_url()}}{{uri_string()}}/{{data.id}}/remove');" class="btn btn-outline red btn-sm black"><i class="fa fa-trash-o"></i> Удалить </a>
+                        </td>
+                    </tr>
+                   {% endfor %}
+            	</tbody>                 
+{% endblock %}

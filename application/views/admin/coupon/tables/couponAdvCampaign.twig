@@ -1,0 +1,25 @@
+{% extends "admin/parts/table.twig" %}
+{% block data %}
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in records %}
+        <tr id="{{data.id}}" class="odd gradeX">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.description}}</td>
+            <td>
+                <a href="{{site_url()}}{{uri_string()}}/{{data.id}}" target="_blank" class="btn btn-outline purple btn-sm"><i class="fa fa-pencil-square-o"></i> Редактировать </a>
+                <a href="#basic" data-toggle="modal" onClick="urlToModal('{{site_url()}}{{uri_string()}}/{{data.id}}/remove');" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> Удалить</a>         
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>  
+    {% include 'admin/parts/removeModal.twig' %}               
+{% endblock %}

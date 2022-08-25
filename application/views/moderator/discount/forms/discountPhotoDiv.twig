@@ -1,0 +1,4 @@
+{% for discountPhoto in discountPhotos %}
+    <img src="{{base_url()}}images/discount/{{discountPhoto.photo}}" height=200>
+    <a href="#" photoId="{{discountPhoto.id}}" data-toggle="modal" onClick="deletePhoto($(this).attr('photoId'), 'discountPhoto');" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> </a>
+{% endfor %}

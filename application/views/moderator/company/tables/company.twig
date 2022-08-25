@@ -1,0 +1,42 @@
+{% extends "admin/parts/companyTable.twig" %}
+{% block data %}
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Название</th>
+        <th>Категория</th>
+        <th>Email</th>
+        <th>символов всего</th>
+        <th>символов без HTML</th>
+        <th>Статус</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in records %}
+        <tr id="{{data.id}}">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.categoryName}}</td>
+            <td>{{data.siteUserEmail}}</td>
+            <td>{{data.symbols}}</td>
+            <td>{{data.symbolsHTML}}</td>
+            <td>
+                {% if data.moderated == 0 and data.accepted == 0 %}
+                    Не отмодерирована
+                {% elseif data.moderated == 1 and data.accepted == 0 %}
+                    Не опубликована
+                {% elseif data.moderated == 1 and data.accepted == 1 %}
+                    Опубликована
+                {% endif %}
+            </td>
+            <td>
+                {%if data.moderated == 0 and data.accepted == 0 %}<a href="#" onClick="publishCompany({{data.id}});return false;" class="btn btn-outline green btn-sm">Опубликовать</a>{%endif%}
+                <a href="{{site_url()}}{{uri_string()}}/{{data.id}}" target="_blank" class="btn btn-outline purple btn-sm"><i class="fa fa-pencil-square-o"></i> Редактировать </a>
+                <a href="#basic" data-toggle="modal" onClick="urlToModal('{{site_url()}}{{uri_string()}}/{{data.id}}/remove');" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> Удалить</a>         
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>  
+    {% include 'admin/parts/removeModal.twig' %}               
+{% endblock %}

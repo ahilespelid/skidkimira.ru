@@ -1,0 +1,317 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+<div class="row">
+{% include 'admin/parts/removeModal.twig' %}
+{% include 'admin/parts/uploadImageModal.twig' %}
+    {% if not new %}
+    <div id="companyBranchofficeDiv"></div>
+    <div id="companyDiscountDiv"></div>
+    <div class="col-md-12">
+        <div class="portlet box light-grey">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>Описание 
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form id="companyDescription" class="form-horizontal" role="form" method="POST" onsubmit="saveCompanyDescription();return false;">
+                    <div class="form-body">
+                            <input type="hidden" class="form-control" name="CompanyId" value="{{companyId}}" id="companyId"> 
+                            <input type="hidden" class="form-control" name="moderated" value="1">                            
+                            <input type="hidden" class="form-control" name="accepted" value="{{record.accepted}}">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Город</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="CityId" id="companyCitySelector">
+                                    {% set cityselected = false %}
+                                    {% for city in cities %}
+                                    
+                                        {% if (record.cityId and city.id == record.cityId) or ('есть описание' in city.name and cityselected == false) or  city.id == 1 %}
+                                            {% set cityselected = true %}
+                                            <option selected value="{{city.id}}">{{city.name}}</option>
+                                        {% else %}
+                                            <option value="{{city.id}}">{{city.name}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <script>
+                        var companyId = '{{companyId}}';
+                        </script>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><a href="#" id="plaindesclink" data-cityid="{{record.cityId}}" onclick="javascript:window.open('/admin/companyCityDescriptionplain/{{companyId}}/'+this.dataset.cityid, '', 'height=300, width=700, top=300, left=300, scrollbars=1');return false;">Описание</a></label>
+                            <div class="col-md-9">
+                                <textarea id="cityDescriptionHTML" class="ckeditor form-control" rows="10" name="description"></textarea>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Торговые центры</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="shoppingCenterSelector" >
+                                </select>
+                             </div>
+                        </div>
+                        <div id="shoppingCenterBranchofficeDiv" class="form-group">
+                            {% include 'admin/company/tables/shoppingCenterBranchoffice.twig' %} 
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button id="saveCityDescriptionBtn" type="submit" class="btn green">Сохранить</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="col-md-12">
+        <div class="portlet box light-grey">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>{{title}}
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form id="table" class="form-horizontal" role="form" method="POST" >
+                    <div class="form-body">
+                        {% if not new %}
+                            <input type="hidden" class="form-control" name="CompanyId" value="{{record.id}}" id="companyId"> 
+                        {% else %}
+                            <input type="hidden" class="form-control" name="siteUserId" value="{{moderatorId}}"> 
+                            <input type="hidden" class="form-control" name="moderatorId" value="{{moderatorId}}"> 
+                            <input type="hidden" class="form-control" name="moderated" value="0">
+                            <input type="hidden" class="form-control" name="accepted" value="0">
+                        {% endif %}
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Название компании <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" data-required="1" name="name" value="{{ record.name }}"> 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Адрес в строке заголовка</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="url"  value="{{record.url}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Адрес сайта</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="siteAddress"  value="{{record.siteAddress}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <div class="checkbox">
+                                    <label>
+                                    {% if record.hasWebShop == 1 %}
+                                        <input id="hasWebShop" type="checkbox" name="hasWebShop" value="{{record.hasWebShop}}" checked><span></span> Наличие интернет магазина </label>
+                                    {% else %}
+                                        <input id="hasWebShop" type="checkbox" name="hasWebShop" value="0"><span></span> Наличие интернет магазина </label>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <div class="checkbox">
+                                    <label>
+                                    {% if record.hasStockCenter == 1 %}
+                                        <input id="hasStockCenter" type="checkbox" name="hasStockCenter" value="{{record.hasStockCenter}}" checked><span></span> Наличие сток центра </label>
+                                    {% else %}
+                                        <input id="hasStockCenter" type="checkbox" name="hasStockCenter" value="0"><span></span> Наличие сток центра </label>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Короткое описание компании </label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows="3" name="description">{{record.description}}</textarea>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Рекламный код от AdmitAd </label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows="3" name="admitadCode">{{record.admitadCode}}</textarea>
+                            </div>
+                        </div> 
+                        {% if not new %}
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Логотип</label>
+                            <div class="col-md-9">
+                                {% if record.logo%}
+                                    <img id="companyLogo" src="{{site_url()}}images/company/{{record.logo}}">
+                                {% else %}
+                                    <img id="companyLogo" src="">
+                                {% endif%}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-md-3 control-label">Загрузить логотип</label>
+                            <div class="col-md-9">
+                                <a href="#uploadImage" data-toggle="modal" class="btn btn-outline green" onClick="$('#imageUploadType').val('companyLogo');$('#imageDestinationId').val({{record.id}});"><i class="fa fa-upload"></i> Загрузить</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Отрасль</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="speciality">
+                                    {% for speciality in specialities %}
+                                        {% if speciality.value == record.speciality|lower %}
+                                            <option selected value="{{speciality.value}}">{{speciality.name}}</option>
+                                        {% elseif not record.speciality and speciality.value == 'sale'%}
+                                            <option selected value="{{speciality.value}}">{{speciality.name}}</option>
+                                        {% else %}
+                                            <option value="{{speciality.value}}">{{speciality.name}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div> 
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Категория</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="categoryId">
+                                    {% for category in categories %}
+                                        {% if category.id == record.categoryId %}
+                                            <option selected value="{{category.id}}">{{category.name}}</option>
+                                        {% else %}
+                                            <option value="{{category.id}}">{{category.name}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Тип компании</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="companyType">
+                                    {% for companyType,value in companyTypes %}
+                                        {% if companyType|lower == record.companyType|lower %}
+                                            <option selected value="{{companyType}}">{{value}}</option>
+                                        {% else %}
+                                            <option value="{{companyType}}">{{value}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Тип бренда</label>
+                            <div class="col-md-9">
+                                <label><input type="checkbox" value="1" name="clothesBrand" {% if record.clothesBrand is not null and record.clothesBrand != 0 %}checked{% endif %}/><span>Одежда</span></label>
+                                <label><input type="checkbox" value="1" name="shoesBrand" {% if record.shoesBrand is not null and record.shoesBrand != 0 %}checked{% endif %}/><span>Обувь</span></label>
+                                <label><input type="checkbox" value="1" name="accessoriesBrand" {% if record.accessoriesBrand is not null and record.accessoriesBrand != 0 %}checked{% endif %}/><span>Аксессуары</span></label>
+                                <label><input type="checkbox" value="1" name="sportBrand" {% if record.sportBrand is not null and record.sportBrand != 0 %}checked{% endif %}/><span>Спорт</span></label>
+                                <label><input type="checkbox" value="1" name="toiletryBrand" {% if record.toiletryBrand is not null and record.toiletryBrand != 0 %}checked{% endif %}/><span>Косметика</span></label>
+                                <label><input type="checkbox" value="1" name="furnitureBrand" {% if record.furnitureBrand is not null and record.furnitureBrand != 0 %}checked{% endif %}/><span>Мебель</span></label>
+                                <label><input type="checkbox" value="1" name="childrenBrand" {% if record.childrenBrand is not null and record.childrenBrand != 0 %}checked{% endif %}/><span>Для детей</span></label>
+                                <label><input type="checkbox" value="1" name="electroBrand" {% if record.electroBrand is not null and record.electroBrand != 0 %}checked{% endif %}/><span>Электроника</span></label>    
+                                <label><input type="checkbox" value="1" name="autoBrand" {% if record.autoBrand is not null and record.autoBrand != 0 %}checked{% endif %}/><span>Авто</span></label>
+                                <label><input type="checkbox" value="1" name="jewelryBrand" {% if record.jewelryBrand is not null and record.jewelryBrand != 0 %}checked{% endif %}/><span>Ювелирные</span></label>
+                                <label><input type="checkbox" value="1" name="otherBrand" {% if record.otherBrand is not null and record.otherBrand != 0 %}checked{% endif %}/><span>Прочее</span></label>                                                                                            
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Приоритет (от 0 до 100) <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" data-required="1" name="priority"  value="{{ record.priority ? record.priority : 0 }}">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">HTML Title </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="htmlTitle"  value="{{record.htmlTitle}}">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">HTML Description </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="htmlDescription"  value="{{record.htmlDescription}}">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">HTML Keywords </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="htmlKeywords"  value="{{record.htmlKeywords}}">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">HTML Canonical link </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="htmlCanonicalLink"  value="{{record.htmlCanonicalLink}}">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">URL-K</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="urlk"  value="{{record.urlk}}">
+                            </div>
+                        </div>                         
+                        {% if not new %}
+                        {#<div class="form-group">
+                            <label class="col-md-3 control-label">Фотографии компании</label>
+                            <div class="col-md-9" id="companyPhotoDiv">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Загрузить фото</label>
+                            <div class="col-md-9">
+                                <a href="#uploadImage" data-toggle="modal" class="btn btn-outline green" onClick="$('#imageUploadType').val('companyPhoto');$('#imageDestinationId').val({{record.id}});"><i class="fa fa-upload"></i> Загрузить </a>
+                            </div>
+                        </div>#}
+                        {% endif %}
+                    </div>
+                    <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            {% if record.accepted == 0 and record.accepted != ''%}
+                                <button id="publishBtn" type="button" class="btn purple" onclick="publishCompany({{record.id}});">Опубликовать</button>
+                            {% elseif record.accepted == 1 %}
+                                <button id="unpublishBtn" type="button" class="btn red" onclick="unpublishCompany({{record.id}});">Снять публикацию</button>                            
+                            {% endif %}                        
+                            <button id="saveBtn" type="submit" class="btn green">Сохранить</button>
+                            <button type="button" class="btn default" onClick="window.opener.location.reload();window.close();">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if not new %}
+    <div class="col-md-12">
+        <div class="portlet box light-grey">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>Каталоги компании 
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form id="companyDescription" class="form-horizontal" role="form" method="POST" onsubmit="return false;">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-9">
+                                {% include 'admin/companycatalog/tables/companyCatalog.twig' %} 
+                             </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

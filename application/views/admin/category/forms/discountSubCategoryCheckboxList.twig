@@ -1,0 +1,9 @@
+{% for subCategory in subCategories %}
+    <label class="mt-checkbox">
+        {% if subCategory.checked %}
+            <input type="checkbox" checked waschecked="1" value="{{subCategory.id}}">{{subCategory.name}}<span></span>
+        {% else %}
+            <input type="checkbox" waschecked="0" value="{{subCategory.id}}">{{subCategory.name}}<span></span>
+        {% endif %}
+    </label>
+{% endfor %}

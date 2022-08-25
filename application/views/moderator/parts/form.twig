@@ -1,0 +1,31 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+            <div class="row">
+				<div class="col-md-12">
+					<div class="portlet box light-grey">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-globe"></i>{{title}}
+							</div>
+						</div>
+						<div class="portlet-body form">
+                            <form id="table" class="form-horizontal" role="form" method="POST">
+                                <div class="form-body">
+                                {% block data %}
+			
+        	                    {% endblock %}
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button id="saveBtn" type="submit" class="btn green">Сохранить</button>
+                                            <button type="button" class="btn default" onClick="window.opener.location.reload();window.close();">Закрыть</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

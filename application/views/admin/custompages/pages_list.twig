@@ -1,0 +1,40 @@
+{% extends "admin/adminLayout.twig" %}
+{% block content %}
+<h1>Дополнительные разделы сайта</h1>
+{% if message %}<h2>{{message}}</h2>{% endif %}
+<table cellpadding="0" cellspacing=10 width="100%" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for page in pages %}
+        <tr><td>{{page.id}}</td><td><a href="/admin/custompages/{{page.id}}">{{page.url}}</a></td><td><a href="/admin/custompages/{{page.id}}">{{page.title}}</a></td><td><a href="/admin/custompagedelete/{{page.id}}">Удалить</a></td></tr>
+        {% endfor %}
+        <tr><td><button type="button" class="btn green" onclick="showaddform();">Добавить</button></td><td></td><td></td><td></td></tr>        
+    </tbody>
+</table>
+<form method="post" id="addform" style="display:none;">
+<table cellpadding="0" cellspacing=10 width="100%" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td align="right">URL:</td><td><input type=text name="url" value="{{page.url}}" size="40" required/></td></tr>
+        <tr><td align="right">Заголовок:</td><td><input type=text name="title" value="{{page.title}}" size="40" required/></td></tr>
+        <tr><td colspan="2">
+        <textarea class="ckeditor form-control" name="text" rows="10" cols="100" >{{page.text}}</textarea></td></tr>
+        
+        <tr><td></td><td><button type="submit" class="btn green">Создать</button></td></tr>        
+    </tbody>
+</table>
+</form>
+<script>
+function showaddform(){
+    $('#addform').slideToggle();
+}
+</script>
+{% endblock %}

@@ -1,0 +1,212 @@
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-filter"></i>Фильтр
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form name="filter" role="form" id="filter" method="GET">
+            <div class="form-body">
+            <div class="table-scrollable">
+                <table class="table">
+                    <tbody
+                        <tr>
+                            <td style="border: none;">
+                                <label>Имя</label>
+                                <input type="hidden" name="filter" value="true">
+                                {% if filter.name %}
+                                    <input type="text" class="form-control input-medium input-sm" name="name" value="{{filter.name}}">
+                                {% else %}
+                                    <input type="text" class="form-control input-medium input-sm" name="name" value="">
+                                {% endif %}
+                            </td>
+                            <td style="border: none;">
+                                <label>Город</label>
+                                <select class="form-control input-medium input-sm" name="CityId">
+                                    {% if filter.CityId %}
+                                        <option value=""></option>
+                                        {% for city in cities %}
+                                            {% if city.id == filter.CityId %}
+                                                <option selected value="{{city.id}}">{{city.name}}</option>
+                                            {% else %}
+                                                <option value="{{city.id}}">{{city.name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value=""></option>
+                                        {% for city in cities %}
+                                            <option value="{{city.id}}">{{city.name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td style="border: none;">
+                                <label>Отрасль</label>
+                                <select class="form-control input-medium input-sm" name="speciality">
+                                    {% if filter.speciality != '' %}
+                                        <option value=""></option>
+                                        {% for speciality in specialities %}
+                                            {% if speciality.value|escape == filter.speciality %}
+                                                <option selected value="{{speciality.value}}">{{speciality.name}}</option>
+                                            {% else %}
+                                                <option value="{{speciality.value}}">{{speciality.name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <option selected value=""></option>
+                                        {% for speciality in specialities %}
+                                            <option value="{{speciality.value}}">{{speciality.name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td style="border: none;">
+                                <label>Категория</label>
+                                <select class="form-control input-medium input-sm" name="categoryId">
+                                    {% if filter.categoryId %}
+                                        <option value=""></option>
+                                        {% for category in categories %}
+                                            {% if category.id == filter.categoryId %}
+                                                <option selected value="{{category.id}}">{{category.name}}</option>
+                                            {% else %}
+                                                <option value="{{category.id}}">{{category.name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <option selected value=""></option>
+                                        {% for category in categories %}
+                                            <option value="{{category.id}}">{{category.name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </td style="border: none;">
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+                                <label>Модератор</label>
+                                <select class="form-control input-medium" name="siteUserId">
+                                    {% if filter.siteUserId %}
+                                        <option value=""></option>
+                                        {% for moderator in moderators %}
+                                            {% if moderator.id == filter.siteUserId %}
+                                                <option selected value="{{moderator.id}}">{{moderator.email}}</option>
+                                            {% else %}
+                                                <option value="{{moderator.id}}">{{moderator.email}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <option selected value=""></option>
+                                        {% for moderator in moderators %}
+                                            <option value="{{moderator.id}}">{{moderator.email}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td style="border: none;">
+                                <label>Тип компании</label>
+                                <select class="form-control input-medium" name="companyType">
+                                    {% if filter.companyType %}
+                                        <option value=""></option>
+                                        {% for companyType,value in companyTypes %}
+                                            {% if companyType == filter.companyType %}
+                                                <option selected value="{{companyType}}">{{value}}</option>
+                                            {% else %}
+                                                <option value="{{companyType}}">{{value}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <option selected value=""></option>
+                                        {% for companyType,value in companyTypes %}
+                                            <option value="{{companyType}}">{{value}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td style="border: none;">
+                                <label>Интернет магазин</label>
+                                <select class="form-control input-medium" name="hasWebShop">
+                                    {% if filter.hasWebShop != '' %}
+                                        <option value="">не важно</option>
+                                        {% for hasWebShop in hasWebShopValues %}
+                                            {% if hasWebShop.value|escape == filter.hasWebShop %}
+                                                <option selected value="{{hasWebShop.value}}">{{hasWebShop.name}}</option>
+                                            {% else %}
+                                                <option value="{{hasWebShop.value}}">{{hasWebShop.name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <option selected value="">не важно</option>
+                                        {% for hasWebShop in hasWebShopValues %}
+                                            <option value="{{hasWebShop.value}}">{{hasWebShop.name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td style="border: none;">
+                                <label>Сток центр</label>
+                                <select class="form-control input-medium" name="hasStockCenter">
+                                    {% if filter.hasStockCenter != '' %}
+                                        <option value="">не важно</option>
+                                        {% for hasStockCenter in hasStockCenterValues %}
+                                            {% if hasStockCenter.value|escape == filter.hasStockCenter %}
+                                                <option selected value="{{hasStockCenter.value}}">{{hasStockCenter.name}}</option>
+                                            {% else %}
+                                                <option value="{{hasStockCenter.value}}">{{hasStockCenter.name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <option selected value="">не важно</option>
+                                        {% for hasStockCenter in hasStockCenterValues %}
+                                            <option value="{{hasStockCenter.value}}">{{hasStockCenter.name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+                                <label>Модерация</label>
+                                <select class="form-control input-medium" name="moderated">
+                                        <option value=""></option>
+                                    {% if filter.moderated == 1 %}
+                                        <option selected value="1">отмодерированные</option>
+                                        <option value="0">неотмодерированные</option>
+                                    {% elseif filter.moderated == '' %}
+                                        <option value="1">отмодерированные</option>
+                                        <option value="0">неотмодерированные</option>         
+                                    {% else %}
+                                        <option value="1">отмодерированные</option>
+                                        <option selected value="0">неотмодерированные</option>                                                               
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td style="border: none;">
+                                <label>Публикация</label>
+                                <select class="form-control input-medium" name="accepted">
+                                    <option value=""></option>
+                                    {% if filter.accepted == 1 %}
+                                        <option selected value="1">опубликованные</option>
+                                        <option value="0">неопубликованные</option>
+                                    {% elseif  filter.accepted == '' %}
+                                        <option value="1">опубликованные</option>
+                                        <option value="0">неопубликованные</option>         
+                                    {% else %}
+                                        <option value="1">опубликованные</option>
+                                        <option selected value="0">неопубликованные</option>                                    
+                           
+                                    {% endif %}
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            <div class="form-actions right">
+                
+                <a href="/admin/company" class="btn btn-outline red">Сбросить </a>
+                <button id="filterBtn" type="submit" class="btn green">Применить</button>
+            </div>
+        </form>
+    </div>
+</div>

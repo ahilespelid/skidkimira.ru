@@ -1,0 +1,20 @@
+<div class="modal fade" id="uploadCompanyLogo" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Загрузить файл</h4>
+            </div>
+            {{error}}
+            <form action="{{site_url()}}admin/doUpload" enctype="multipart/form-data" target="_blank" method="post" accept-charset="utf-8" onSubmit="$('#uploadCompanyLogo').modal('toggle');">
+            <div class="modal-body">
+                <input type="file" class="btn default" name="userfile" size="20" />
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn green" value="Загрузить" />
+                <button type="button" class="btn default" data-dismiss="modal">Отмена</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

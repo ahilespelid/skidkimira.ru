@@ -1,0 +1,166 @@
+{%extends 'html.twig' %} {% block content %}
+<div class="content clearfix">
+
+    <div class="center kat">
+
+        <div class="banner-width">
+				<noindex>
+				{{adverts.top_fullwidth|raw}}
+				</noindex>
+        </div>
+
+
+
+        <h1>{{content.tc.name}}</h1>
+     
+
+            <div class="yadirect-slon">
+				<noindex>
+				{{adverts.details_top|raw}}
+				</noindex>
+            </div>
+
+            <div class="open-catalog">
+		<div class="cat">
+                <div class="logotip" onclick="zoomlogo('{{base_url()}}images/company/{{content.tc.logo}}');">
+
+                    <img src="{{base_url()}}images/company/{{content.tc.logo}}" alt="">
+
+                </div>
+
+		</div>
+				<div class="underlogodetail">
+					{% if adverts.underlogo_detail %}
+						<noindex>
+						{{adverts.underlogo_detail|raw}}
+						</noindex>
+					{% endif %}
+				</div>
+
+
+            </div>
+
+
+			<div class="opisanie-marki" style="width:58%;">
+            <div class="resizing-container">
+                {{content.tc.description|raw}}
+            </div>
+            <div class="pink view-all">
+                <a href="#">
+                    <span class="drop-down">Показать еще</span>
+                </a>
+                <div class="clear"></div>
+            </div>
+        </div>
+		<div class="onlymobile">
+			<noindex>
+			{{adverts.mobile_brands|raw}}
+			</noindex>
+		</div>		
+
+        <div class="map2-and-info clearfix">
+
+            <div class="info2">
+
+                <div class="akc">
+
+                    <a href="/catalogue/discount/tc/{{content.tc.id}}">Акции</a>
+
+                </div>
+
+                <div class="inf">
+
+                    <ul>
+                        {% if content.tc.schedule and content.tc.schedule != '' %}
+                        <li class="tim">Режим работы: {{content.tc.schedule}}</li>
+                        {% endif %}
+                        {% if content.tc.phone %}
+                        <li class="tel">Телефон:<br> {{content.tc.phone}}</li>
+                        {% endif %}
+                        {% if content.tc.siteAddress %}
+                        <li class="sit">Официальный сайт:
+
+                            <a href="#">{{content.tc.siteAddress}}</a></li>
+                        {% endif %}
+                        {% if content.tc.address %}
+                        <li class="adr">Адрес: <br>
+                             <a style="display:none;" id="tcaddress" title="{{content.tc.address}}" position="{{content.tc.latitude}},{{content.tc.longitude}}" href="javascript:showOnMap('{{content.tc.latitude}}','{{content.tc.longitude}}')">{{content.tc.address}}</a>
+                            {{content.tc.address}}</li>
+                        {% endif %}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="map2">
+                <div style="width: 100%; height: 400px; margin: 0 auto;" id="YMapsID"></div>
+                <!--<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=_K3gzO0KTL7jJzAEosvmk-NxmB3H0e1x&width=380&height=300&lang=ru_UA&sourceType=constructor&scroll=true"></script>-->
+
+            </div>
+        </div>
+
+        <div class="banner-width">
+			<noindex>
+			{{adverts.center_fullwidth|raw}}
+			</noindex>
+        </div>
+        {% for key in content.tc_comp|keys %}
+        <div class="part2">
+            <h4>{{key}}</h4>
+            <div class="inner-ul">
+                <ul class="ul1">
+                        {% for brand in content.tc_comp[key] %}
+                        <li{% if brand.discounts > 0 %} class="dot"{% endif %}><a href="/company/{{brand.id}}">{{brand.name}}</a></li>
+                            {% if content.tc_comp[key]|length/3 > 1 %}                        
+                                {% if loop.index%((content.tc_comp[key]|length/3)|round) == 0  and loop.index/((content.tc_comp[key]|length/3)|round) < 3%}
+                                </ul><ul  class="ul{{loop.index/((content.tc_comp[key]|length/3)|round)+1}}">
+                                {% endif %}                       
+                            {% endif %}
+                        {% endfor %}                    
+                </ul>
+            {% if content.tc_comp[key]|length > 12 %}
+            <div class="showmorebrand">
+
+                <a class="" href="#">показать еще</a>
+
+            </div>                
+            {% endif %}
+            </div>            
+        </div>
+
+
+{% if loop.index == 2 %}
+		<div class="onlymobile">
+			<noindex>
+			{{adverts.mobile_catalogitem2|raw}}
+			</noindex>
+		</div>		
+{% endif %}			
+
+        
+        {% endfor %}
+        <div class="banner-width">
+			<noindex>
+			{{adverts.center_fullwidth|raw}}
+			</noindex>
+        </div>        
+    </div>
+
+
+
+        {% include 'parts/menu.twig'%}
+
+        {#
+        <aside class="side-right ksr">
+			<noindex>
+			{{adverts.right_banners|raw}}
+			</noindex>
+        </aside>
+        #}
+
+    </div>
+    <script type="text/javascript" src="//api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"></script>
+    <script type="text/javascript" src="{{base_url()}}assets/js/maps.js"></script>
+    {% endblock %}

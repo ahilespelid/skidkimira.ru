@@ -1,0 +1,179 @@
+{%extends 'html.twig' %}
+
+{% block content %}
+
+ <style type="text/css">
+.center .banner-width {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    vertical-align: top;
+    margin-right: 3px;    
+}
+@media screen and (max-width: 566px){
+.nomobile{display:none !important;}
+.onlymobile{
+    display:inherit !important;
+    position: relative;
+    width: 100%;
+    margin: 0 0 25px;
+}
+.center .banner-width {
+    width: 100%;
+    margin: 0;
+}
+.skidki-iz-kataloga{
+    margin: 0;
+}
+.skidki-iz-kataloga .skidka {
+    width: 100%!important;
+}
+.center h2:not(:first-child) {
+    margin-left: 14%;
+}}
+
+@media screen and (min-width: 567px) and (max-width: 701px) {.center .banner-width {width: 528px;} .nomobile{display:none !important;}}
+@media screen and (min-width: 701px) and (max-width: 742px) {.center .banner-width {width: 260px;} .nomobile{display:none !important;}}
+@media screen and (min-width: 742px) and (max-width: 801px) {.center .banner-width {width: 528px;}}
+@media screen and (min-width: 801px) and (max-width: 1091px){.center .banner-width {width: 260px;}}
+@media screen and (min-width: 1092px) {.center .banner-width {width: 100%;}}
+</style>
+	<div class="content clearfix">
+
+		<div class="center kat">
+
+        <div class="banner-width">
+				<noindex>
+				{{adverts.top_fullwidth|raw}}
+				</noindex>
+        </div>
+					
+			<h1 style="float:left;">{{content.title|raw}}
+			</h1>
+<div class="rblock">
+						<noindex>
+						{{adverts.top_rightheader|raw}}
+						</noindex>
+</div>
+<br style="clear:both;"/>
+
+			<div class="skidki-iz-kataloga">
+
+                {% for company in content.companies %}
+				<div class="skidka">
+                    <a title="{{company.name}}" href="/company/{{company.id}}">
+					<div><img src="{{base_url()}}images/company/{{company.logo}}" alt="{{company.name}}"/></div>
+
+					<p><span>{{company.name[:17]}}{% if company.name|length > 17 %}...{% endif %}</span>
+                    <br>
+                    <span title="{{company.description}}">{{company.description[:17]}}{% if company.name|length > 17 %}...{% endif %}</span></p>
+					</a>
+					{% if loop.index < 3 %}
+					<div class="r-google">
+						<noindex>
+						{{adverts.catalog_item|raw}}
+						</noindex>
+					</div>
+					{% endif %}
+
+				</div>
+{% if loop.index == 12 %}
+	<div class="banner-width nomobile">
+			<noindex>
+			{{adverts.center_fullwidth|raw}}
+			</noindex>
+	</div>
+{% endif %}
+{% if loop.index == 24 %}
+    <div class="banner-width nomobile">
+            <noindex>
+<!-- Yandex.RTB R-A-141647-17 -->
+<div id="yandex_rtb_R-A-141647-17"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-17',
+    blockId: 'R-A-141647-17'
+  })
+})</script>
+            </noindex>
+    </div>
+{% endif %}
+{% if loop.index == 36 %}
+    <div class="banner-width nomobile">
+            <noindex>
+<!-- Yandex.RTB R-A-141647-18 -->
+<div id="yandex_rtb_R-A-141647-18"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-18',
+    blockId: 'R-A-141647-18'
+  })
+})</script>
+            </noindex>
+    </div>
+{% endif %}  
+
+					{% if loop.index == 8 %}
+						<div class="onlymobile">
+							<noindex>
+							{{adverts.mobile_catalogitem|raw}}
+							</noindex>
+						</div>
+					{% endif %}
+					{% if loop.index == 16 %}
+						<div class="onlymobile">
+							<noindex>
+							{{adverts.mobile_catalogitem2|raw}}
+							</noindex>
+						</div>
+					{% endif %}										
+					{% if loop.index == 24 %}
+						<div class="onlymobile">
+							<noindex>
+							{{adverts.mobile_catalogitem3|raw}}
+							</noindex>
+						</div>
+					{% endif %}															
+
+					
+                {% endfor %}
+    <div class="onlymobile">
+        <noindex>
+<!-- Yandex.RTB R-A-141647-14 -->
+<div id="yandex_rtb_R-A-141647-14"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-14',
+    blockId: 'R-A-141647-14'
+  })
+})</script>
+        </noindex>
+    </div>
+                <div class="pagination">
+					<ul class="clearfix">
+                        {{content.pagination|raw}}
+					</ul>
+
+				</div>                
+            </div>
+
+
+			<div class="kakoito-text">
+			<!--	{{additional.promotextbtm|raw}} вывод текста для подкатегории Магазинов-->
+			</div>
+
+			
+
+		</div>
+
+		{% include 'parts/menu.twig'%}
+
+        {#
+		<aside class="side-right">
+			<noindex>
+			{{adverts.right_banners|raw}}
+			</noindex>
+		</aside>
+        #}		
+	</div>		
+{% endblock %}

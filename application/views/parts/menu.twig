@@ -1,0 +1,61 @@
+{% set rusmonth = {'1':'января','2':'февраля','3':'марта','4':'апреля','5':'мая','6':'июня','7':'июля','8':'августа','9':'сентября','10':'октября','11':'ноября','12':'декабря',} %}
+		<aside class="side-left">
+
+			{% include 'parts/menus/cities.html'%}
+
+			<div class="menu">
+				<ul>
+					<li><a href="/catalogue/discount" {% if uri_string() starts with  'catalogue/discount'  or uri_string() starts with  'discount/' %}class="active"{%endif%}>Акции и Скидки</a>
+					{% if uri_string() starts with  'catalogue/discount' or uri_string() starts with  'discount' %}
+						{% if uri_string() == 'catalogue/discount' or uri_string() starts with 'catalogue/discount/actual/' or uri_string() starts with  'discount' %}
+						{% include 'parts/menus/discounts.html' %}
+						{% elseif uri_string() starts with  'catalogue/discount/cat/' or uri_string() starts with  'catalogue/discount/subcat/' %}
+							{% include 'parts/menus/discounts'~content.cat.id~'.html' %}						
+						{% endif %}
+					{% endif %}
+					</li>
+					<li><a href="/catalogue/company" {% if uri_string() == 'catalogue/company' or uri_string() starts with  'catalogue/company/' or uri_string() starts with  'company' %}class="active"{%endif%}>Магазины</a>
+					{% if uri_string() == 'catalogue/company' or uri_string() starts with  'catalogue/company/' or uri_string() starts with  'company' %}
+						{% include 'parts/menus/companies.html' %}
+					{% endif %}					
+					</li>
+					<li><a href="/catalogue/brands" {% if uri_string() starts with  'catalogue/brands' or uri_string() starts with  'brand/'%}class="active"{%endif%}>Бренды</a>
+					{% if uri_string() starts with  'catalogue/brands' or uri_string() starts with  'brand/'%}
+						{% include 'parts/menus/brands.html' %}					
+					{% endif %}
+					</li>
+					<li><a href="/catalogue/tradecenters" {% if uri_string() starts with  'catalogue/tradecenters' or uri_string() starts with  'tcbrand/'%}class="active"{%endif%}>Торговые центры</a>
+					</li>
+					<li><a href="/catalogue/stockcenters" {% if uri_string() starts with  'catalogue/stockcenters' %}class="active"{%endif%}>Дисконт и Сток-Центры </a></li>
+					<li><a href="/catalogue/webshops" {% if uri_string() starts with  'catalogue/webshops' %}class="active"{%endif%}>Интернет-магазины</a>
+						{% if uri_string() starts with 'catalogue/webshops' %}
+						{% include 'parts/menus/webshops.html' %}
+						{% endif %}					
+					</li>
+				</ul>
+				<noindex>
+				{{adverts.left_innermenu|raw}}
+				</noindex>				
+			</div>
+
+			<div class="reclama-side-left">
+				<noindex>
+				{{adverts.left_undermenu|raw}}
+				</noindex>
+			</div>
+
+				<div class="last-action">
+
+					<h3>Последние акции</h3>
+					{% for discount in lastdiscounts %}
+					
+						<div class="action">
+							<a href="/discount/{{discount.id}}"><img src="{{base_url()}}images/discount/{{discount.image}}" alt="{{discount.name}}"/></a><br/>
+							<span>{{discount.startDate|date("j")}} {{rusmonth[discount.startDate|date("n")]}} - {{discount.finishDate|date("j")}} {{rusmonth[discount.finishDate|date("n")]}} </span>
+
+							<p><a href="/discount/{{discount.id}}">{{discount.name}}</a></p>
+
+						</div>					
+					{% endfor %}
+				</div>
+		</aside>

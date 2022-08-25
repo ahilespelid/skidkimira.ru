@@ -1,0 +1,4 @@
+{% for companyPhoto in companyPhotos %}
+    <img src="{{base_url()}}images/company/{{companyPhoto.photo}}" height=200>
+    <a href="#" photoId="{{companyPhoto.id}}" data-toggle="modal" onClick="deletePhoto($(this).attr('photoId'), 'companyPhoto');" class="btn btn-outline red btn-sm"><i class="fa fa-trash-o"></i> </a>
+{% endfor %}
