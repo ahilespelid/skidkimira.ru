@@ -6,6 +6,7 @@ Disallow: /goods/*
 Disallow: /coupon/*
 Disallow: /representative/*
 Disallow: /remember/*
+Disallow: /admin/*
 
 User-agent: Yandex
 Disallow: /*?wick*

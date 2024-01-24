@@ -41,9 +41,22 @@
 
         <div class="center kat">
 
-            <div class="banner-width">
+            <div class="banner-width nomobile"> 
                 <noindex>
                 {{adverts.top_fullwidth|raw}}
+                </noindex>
+            </div>
+
+            <div class="banner-width onlymobile">
+                <noindex>
+<!-- Yandex.RTB R-A-141647-19 -->
+<div id="yandex_rtb_R-A-141647-19"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-19',
+    blockId: 'R-A-141647-19'
+  })
+})</script>
                 </noindex>
             </div>
 
@@ -70,8 +83,12 @@
                 </div>
 
                 {% if content.discount.urlMore %}
-                <div class="catal">
-                    <a onclick="return showInFrame(this);" href="#" data-url="{{content.discount.urlMore}}">Каталог товаров</a>
+                <div class="catal"> 
+                    {% if content.discount.urlCheck == 'on' %}
+                       <a href="{{base_url()}}discount/url/{{content.discount.id}}" target="_blank">Каталог товаров</a> 
+                    {% else %}
+                        <a onclick="return showInFrame(this);" href="#" data-url="{{content.discount.urlMore}}">Каталог товаров</a>
+                    {% endif %}
                 </div>
                 {% endif %}
 

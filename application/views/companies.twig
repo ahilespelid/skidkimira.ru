@@ -38,51 +38,64 @@
 @media screen and (min-width: 801px) and (max-width: 1091px){.center .banner-width {width: 260px;}}
 @media screen and (min-width: 1092px) {.center .banner-width {width: 100%;}}
 </style>
-	<div class="content clearfix">
+    <div class="content clearfix">
 
-		<div class="center kat">
+        <div class="center kat">
 
-        <div class="banner-width">
-				<noindex>
-				{{adverts.top_fullwidth|raw}}
-				</noindex>
-        </div>
-					
-			<h1 style="float:left;">{{content.title|raw}}
-			</h1>
+            <div class="banner-width nomobile">
+                <noindex>
+                {{adverts.top_fullwidth|raw}}
+                </noindex>
+            </div>
+
+            <div class="banner-width onlymobile">
+                <noindex>
+<!-- Yandex.RTB R-A-141647-19 -->
+<div id="yandex_rtb_R-A-141647-19"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-19',
+    blockId: 'R-A-141647-19'
+  })
+})</script>
+                </noindex>
+            </div>
+                    
+            <h1 style="float:left;">{{content.title|raw}}
+            </h1>
 <div class="rblock">
-						<noindex>
-						{{adverts.top_rightheader|raw}}
-						</noindex>
+                        <noindex>
+                        {{adverts.top_rightheader|raw}}
+                        </noindex>
 </div>
 <br style="clear:both;"/>
 
-			<div class="skidki-iz-kataloga">
+            <div class="skidki-iz-kataloga">
 
                 {% for company in content.companies %}
-				<div class="skidka">
+                <div class="skidka">
                     <a title="{{company.name}}" href="/company/{{company.id}}">
-					<div><img src="{{base_url()}}images/company/{{company.logo}}" alt="{{company.name}}"/></div>
+                    <div><img src="{{base_url()}}images/company/{{company.logo}}" alt="{{company.name}}"/></div>
 
-					<p><span>{{company.name[:17]}}{% if company.name|length > 17 %}...{% endif %}</span>
+                    <p><span>{{company.name[:17]}}{% if company.name|length > 17 %}...{% endif %}</span>
                     <br>
                     <span title="{{company.description}}">{{company.description[:17]}}{% if company.name|length > 17 %}...{% endif %}</span></p>
-					</a>
-					{% if loop.index < 3 %}
-					<div class="r-google">
-						<noindex>
-						{{adverts.catalog_item|raw}}
-						</noindex>
-					</div>
-					{% endif %}
+                    </a>
+                    {% if loop.index < 3 %}
+                    <div class="r-google">
+                        <noindex>
+                        {{adverts.catalog_item|raw}}
+                        </noindex>
+                    </div>
+                    {% endif %}
 
-				</div>
+                </div>
 {% if loop.index == 12 %}
-	<div class="banner-width nomobile">
-			<noindex>
-			{{adverts.center_fullwidth|raw}}
-			</noindex>
-	</div>
+    <div class="banner-width nomobile">
+            <noindex>
+            {{adverts.center_fullwidth|raw}}
+            </noindex>
+    </div>
 {% endif %}
 {% if loop.index == 24 %}
     <div class="banner-width nomobile">
@@ -98,6 +111,7 @@
             </noindex>
     </div>
 {% endif %}
+{#  
 {% if loop.index == 36 %}
     <div class="banner-width nomobile">
             <noindex>
@@ -111,31 +125,32 @@
 })</script>
             </noindex>
     </div>
-{% endif %}  
+{% endif %}
+#}  
 
-					{% if loop.index == 8 %}
-						<div class="onlymobile">
-							<noindex>
-							{{adverts.mobile_catalogitem|raw}}
-							</noindex>
-						</div>
-					{% endif %}
-					{% if loop.index == 16 %}
-						<div class="onlymobile">
-							<noindex>
-							{{adverts.mobile_catalogitem2|raw}}
-							</noindex>
-						</div>
-					{% endif %}										
-					{% if loop.index == 24 %}
-						<div class="onlymobile">
-							<noindex>
-							{{adverts.mobile_catalogitem3|raw}}
-							</noindex>
-						</div>
-					{% endif %}															
+                    {% if loop.index == 8 %}
+                        <div class="onlymobile">
+                            <noindex>
+                            {{adverts.mobile_catalogitem|raw}}
+                            </noindex>
+                        </div>
+                    {% endif %}
+                    {% if loop.index == 16 %}
+                        <div class="onlymobile">
+                            <noindex>
+                            {{adverts.mobile_catalogitem2|raw}}
+                            </noindex>
+                        </div>
+                    {% endif %}                                        
+                    {% if loop.index == 24 %}
+                        <div class="onlymobile">
+                            <noindex>
+                            {{adverts.mobile_catalogitem3|raw}}
+                            </noindex>
+                        </div>
+                    {% endif %}                                                            
 
-					
+                    
                 {% endfor %}
     <div class="onlymobile">
         <noindex>
@@ -150,30 +165,30 @@
         </noindex>
     </div>
                 <div class="pagination">
-					<ul class="clearfix">
+                    <ul class="clearfix">
                         {{content.pagination|raw}}
-					</ul>
+                    </ul>
 
-				</div>                
+                </div>                
             </div>
 
 
-			<div class="kakoito-text">
-			<!--	{{additional.promotextbtm|raw}} вывод текста для подкатегории Магазинов-->
-			</div>
+            <div class="kakoito-text">
+            <!--    {{additional.promotextbtm|raw}} вывод текста для подкатегории Магазинов-->
+            </div>
 
-			
+            
 
-		</div>
+        </div>
 
-		{% include 'parts/menu.twig'%}
+        {% include 'parts/menu.twig'%}
 
         {#
-		<aside class="side-right">
-			<noindex>
-			{{adverts.right_banners|raw}}
-			</noindex>
-		</aside>
-        #}		
-	</div>		
+        <aside class="side-right">
+            <noindex>
+            {{adverts.right_banners|raw}}
+            </noindex>
+        </aside>
+        #}        
+    </div>        
 {% endblock %}

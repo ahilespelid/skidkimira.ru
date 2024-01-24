@@ -33,6 +33,8 @@ function saveTable() {
                 }
             }
         }).done(function (data) {
+            //alert(data);
+            //console.log($('#table').serialize());
             $('#saveBtn').html('<i class="fa fa-check"></i> Сохранено');
             if(typeof data == 'object' && data.url){
                 window.location = data.url;

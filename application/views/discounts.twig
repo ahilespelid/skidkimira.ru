@@ -37,23 +37,36 @@
 @media screen and (min-width: 801px) and (max-width: 1091px){.center .banner-width {width: 260px;}}
 @media screen and (min-width: 1092px) {.center .banner-width {width: 100%;}}
 </style>
-	<div class="content clearfix">
+    <div class="content clearfix">
 
-		<div class="center kat">
+        <div class="center kat">
 
-        <div class="banner-width">
-				<noindex>
-				{{adverts.top_fullwidth|raw}}
-				</noindex>
-        </div>
+            <div class="banner-width nomobile">
+                <noindex>
+                {{adverts.top_fullwidth|raw}}
+                </noindex>
+            </div>
+
+            <div class="banner-width onlymobile">
+                <noindex>
+<!-- Yandex.RTB R-A-141647-19 -->
+<div id="yandex_rtb_R-A-141647-19"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-19',
+    blockId: 'R-A-141647-19'
+  })
+})</script>
+                </noindex>
+            </div>
 
 
-			<h1 style="float:left;">{{content.title|raw}}
-			</h1>
+            <h1 style="float:left;">{{content.title|raw}}
+            </h1>
 <div class="rblock">
-						<noindex>
-						{{adverts.top_rightheader|raw}}
-						</noindex>
+                        <noindex>
+                        {{adverts.top_rightheader|raw}}
+                        </noindex>
 </div>
 {% if content.cat.top_text and content.cat.top_text != '' %}
 <br style="clear:both;"/>
@@ -61,34 +74,34 @@
 <br/>
 {% endif %}
 <br style="clear:both;"/>
-			<div class="skidki-iz-kataloga">
+            <div class="skidki-iz-kataloga">
 
                 {% for discount in content.discounts %}
-				<div class="skidka width-skidka">
+                <div class="skidka width-skidka">
                     <a href="/discount/{{discount.id}}">
-					<div><img src="{{base_url()}}/images/discount/{{discount.image}}" alt="{{discount.name}}"/></div>
+                    <div><img src="{{base_url()}}/images/discount/{{discount.image}}" alt="{{discount.name}}"/></div>
 
-					<p><span>{{discount.startDate|date("j")}} {{rusmonth[discount.startDate|date("n")]}} {% if "now"|date("Y") != discount.startDate|date("Y") %}{{discount.startDate|date("Y")}}{%endif%} - {{discount.finishDate|date("j")}} {{rusmonth[discount.finishDate|date("n")]}} {% if "now"|date("Y") != discount.finishDate|date("Y") %}{{discount.finishDate|date("Y")}}{%endif%}</span>
+                    <p><span>{{discount.startDate|date("j")}} {{rusmonth[discount.startDate|date("n")]}} {% if "now"|date("Y") != discount.startDate|date("Y") %}{{discount.startDate|date("Y")}}{%endif%} - {{discount.finishDate|date("j")}} {{rusmonth[discount.finishDate|date("n")]}} {% if "now"|date("Y") != discount.finishDate|date("Y") %}{{discount.finishDate|date("Y")}}{%endif%}</span>
                     <br>
                     {{discount.name|slice(0,45)}}{% if discount.name|length > 45 %}...{% endif %}</p></a>
 
-					{% if loop.index < 3 %}
-					<div class="r-google">
-						<noindex>
-						{{adverts.catalog_item|raw}}
-						</noindex>
-					</div>
-					{% endif %}
+                    {% if loop.index < 3 %}
+                    <div class="r-google">
+                        <noindex>
+                        {{adverts.catalog_item|raw}}
+                        </noindex>
+                    </div>
+                    {% endif %}
 
-					<div class="razmer-skidki">
+                    <div class="razmer-skidki">
                         {% if discount.discount > 0 %}
-						<span>-{{discount.discount}}%</span>
+                        <span>-{{discount.discount}}%</span>
                         {% else %}
                         <span class="gift"><img src="{{base_url()}}/assets/img/akcii/gift.png" alt=""></span>
                         {% endif %}
 
-					</div>
-				</div>
+                    </div>
+                </div>
 {% if loop.index == 12 %}
     <div class="banner-width nomobile">
             <noindex>
@@ -109,7 +122,8 @@
 })</script>
             </noindex>
     </div>
-{% endif %}                
+{% endif %}
+{#                
 {% if loop.index == 36 %}
     <div class="banner-width nomobile">
             <noindex>
@@ -123,21 +137,22 @@
 })</script>
             </noindex>
     </div>
-{% endif %}                
+{% endif %}
+#}                
 {% if loop.index == 8 %}
-	<div class="onlymobile">
-		<noindex>
-		{{adverts.mobile_catalogitem|raw}}
-		</noindex>
-	</div>
+    <div class="onlymobile">
+        <noindex>
+        {{adverts.mobile_catalogitem|raw}}
+        </noindex>
+    </div>
 {% endif %}
 {% if loop.index == 16 %}
-	<div class="onlymobile">
-		<noindex>
-		{{adverts.mobile_catalogitem2|raw}}
-		</noindex>
-	</div>
-{% endif %}		
+    <div class="onlymobile">
+        <noindex>
+        {{adverts.mobile_catalogitem2|raw}}
+        </noindex>
+    </div>
+{% endif %}        
 {% if loop.index == 24 %}
     <div class="onlymobile">
         <noindex>
@@ -160,49 +175,49 @@
     </div>
 {% endif %}                            
                 {% endfor %}
-	<div class="banner-width">
-			<noindex>
-			{{adverts.center_fullwidth|raw}}
-			</noindex>
-	</div>				
+    <div class="banner-width">
+            <noindex>
+            {{adverts.center_fullwidth|raw}}
+            </noindex>
+    </div>                
 {% if content.cat.bottom_text and content.cat.bottom_text != '' %}
 <br style="clear:both;"/>
 {{content.cat.bottom_text|raw}}
-{% endif %}	
+{% endif %}    
                 <div class="pagination">
 
-					<ul class="clearfix">
+                    <ul class="clearfix">
                         {{content.pagination|raw}}
-					</ul>
+                    </ul>
 
-				</div>                
+                </div>                
             </div>
 
 
-			<div class="kakoito-text">
-			<!--вывод текта для категории Акции и Скидки
-			{{additional.promotextbtm|raw}}  -->
-			</div>
-			<div class="kakoito-text">
-			<!--вывод текта для подкатегорий категории Акции и Скидки
-				{{add.promotextbtm|raw}} -->
-			</div>
-			<div class="kakoito-text">
-			<!--вывод текта для для подкаткегории подкатегорий категории Акции и Скидки
-				{{addsubtext.promotextbtm|raw}}-->
-			</div>
+            <div class="kakoito-text">
+            <!--вывод текта для категории Акции и Скидки
+            {{additional.promotextbtm|raw}}  -->
+            </div>
+            <div class="kakoito-text">
+            <!--вывод текта для подкатегорий категории Акции и Скидки
+                {{add.promotextbtm|raw}} -->
+            </div>
+            <div class="kakoito-text">
+            <!--вывод текта для для подкаткегории подкатегорий категории Акции и Скидки
+                {{addsubtext.promotextbtm|raw}}-->
+            </div>
 
-		</div>
+        </div>
 
-		{% include 'parts/menu.twig'%}
+        {% include 'parts/menu.twig'%}
 
 
-		{#  
+        {#  
         <aside class="side-right">
-			<noindex>
-			{{adverts.right_banners|raw}}
-			</noindex>
-		</aside>
-        #}		
-	</div>		
+            <noindex>
+            {{adverts.right_banners|raw}}
+            </noindex>
+        </aside>
+        #}        
+    </div>        
 {% endblock %}

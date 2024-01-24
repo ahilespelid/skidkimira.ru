@@ -14,7 +14,6 @@ class Discounts extends CI_Controller
         $this->load->model('Advertmodel');
         //$this->output->enable_profiler(TRUE);
     }
-    function pa($a){echo'<pre>';print_r($a);echo'</pre>';}
     public function listing($isactual = 1, $pagenum = 1)
     {
 
@@ -449,8 +448,17 @@ class Discounts extends CI_Controller
         $this->twig->render('discounts.twig', $data);
 
     }
-
-
+///*/ ahilespelid ///*/
+    public function url($id){
+        $this->load->model('DiscountsModel');
+        try{
+            $discount = (array)$this->DiscountsModel->get_discount($id);
+        } catch (\Exception $e){show_404();}
+        //pa($discount); exit;       
+        $red = (!empty($discount['urlMore']) && !empty($discount['urlCheck'])) ? $discount['urlMore'] : '/discount/'.$id;
+        redirect($red, 'location', 301);
+    }
+///*/ ahilespelid ///*/
     public function details($id)
     {
         $this->load->model('DiscountsModel');

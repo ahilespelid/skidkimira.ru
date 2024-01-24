@@ -144,6 +144,9 @@ class DiscountModel extends CI_Model {
 
      function setCompanyDiscount($data)
      {
+        if(!isset($data['discount']['urlCheck']))
+          $data['discount']['urlCheck'] = 0;
+        //var_dump($data);
          $arr = $data['discount'];
          
          if(array_key_exists('id', $arr)){

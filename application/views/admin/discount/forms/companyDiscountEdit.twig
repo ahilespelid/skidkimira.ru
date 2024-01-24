@@ -172,6 +172,13 @@
                                             <input type="text" class="form-control" name="urlMore"  value="{{record.urlMore}}">
                                         </div>
                                     </div> 
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Cсылка в новой вкладке</label>
+                                        <div class="col-md-9">
+                                            <input type="checkbox" class="form-control" name="urlCheck" {% if record.urlCheck == 'on' %}checked{% endif %}>
+                                        </div>
+                                    </div> 
+                                        
                                     {% if not new %}
                                    {# <div class="form-group">
                                         <label for="exampleInputFile1" class="col-md-3 control-label">Фотографии акции</label>

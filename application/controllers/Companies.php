@@ -205,6 +205,19 @@ class Companies extends CI_Controller {
         $this->twig->render('companies.twig', $data);		        
     }    
 
+///*/ ahilespelid ///*/
+    public function url($id){
+        $this->load->model('Companymodel');
+        $city = $this->Citymodel->resolve_city();
+        
+        try{
+            $company = (array)$this->Companymodel->get_companyFull($id,$city);
+        } catch (\Exception $e){show_404();}
+        //pa($company); exit;
+        $red = (!empty($company['urlk']) && !empty($company['urlkCheck'])) ? $company['urlk'] : '/company/'.$id;
+        redirect($red, 'location', 301);
+    }
+///*/ ahilespelid ///*/
 
     public function details($id){
         $this->load->model('Companymodel');

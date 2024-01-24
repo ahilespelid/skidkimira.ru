@@ -3,53 +3,66 @@
 {% block content %}
 
 
-	<div class="content clearfix">
+    <div class="content clearfix">
 
-		<div class="center kat">
+        <div class="center kat">
 
-			<div class="banner-width">
-				<noindex>
-				{{adverts.top_fullwidth|raw}}
-				</noindex>
-			</div>
+            <div class="banner-width nomobile">
+                <noindex>
+                {{adverts.top_fullwidth|raw}}
+                </noindex>
+            </div>
+
+            <div class="banner-width onlymobile">
+                <noindex>
+<!-- Yandex.RTB R-A-141647-19 -->
+<div id="yandex_rtb_R-A-141647-19"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-19',
+    blockId: 'R-A-141647-19'
+  })
+})</script>
+                </noindex>
+            </div>
             {% if content.cattitle %}<h1>{{content.cattitle}}</h1>{% endif %}
             {% if content.brands.o|length > 0 %}
-			<div class="part">
+            <div class="part">
 
-				<h4>0-9</h4>
+                <h4>0-9</h4>
 
-				<div class="inner-ul">
+                <div class="inner-ul">
 
-					<ul class="ul1">
+                    <ul class="ul1">
                         {% for brand in content.brands.o %}
                         <li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
                         {% if content.brands.o|length/4 > 1 %}                        
                             {% if loop.index%((content.brands.o|length/4)|round) == 0 %}
-	                        </ul><ul  class="ul{{loop.index/((content.brands.o|length/4)|round)+1}}">
+                            </ul><ul  class="ul{{loop.index/((content.brands.o|length/4)|round)+1}}">
                             {% endif %}                       
                         {% endif %}
                         {% endfor %}
-					</ul>
+                    </ul>
 
 
                     {% if content.brands.o|length > 24 %}
-					<div class="showmorebrand">
-						<a href="#">показать еще</a>
-					</div>
+                    <div class="showmorebrand">
+                        <a href="#">показать еще</a>
+                    </div>
                     {% endif %}
 
-				</div>
+                </div>
 
-			</div>
+            </div>
             {% endif %}
             {% if content.brands.a|length > 0 %}
-			<div class="part">
+            <div class="part">
 
-				<h4>A-D</h4>
+                <h4>A-D</h4>
 
-				<div class="inner-ul">
+                <div class="inner-ul">
 
-					<ul class="ul1">
+                    <ul class="ul1">
                         {% for brand in content.brands.a %}
                         <li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
                         {% if content.brands.a|length/4 > 1 %}
@@ -58,57 +71,57 @@
                             {% endif %}
                         {% endif %}
                         {% endfor %}
-					</ul>
+                    </ul>
                     {% if content.brands.a|length > 24 %}
-					<div class="showmorebrand">
+                    <div class="showmorebrand">
 
-						<a href="#">показать еще</a>
+                        <a href="#">показать еще</a>
 
-					</div>
+                    </div>
                     {% endif %}
 
-				</div>
+                </div>
 
-			</div>
+            </div>
             {% endif %}
             {% if content.brands.e|length > 0 %}
-			<div class="part">
+            <div class="part">
 
-				<h4>E-H</h4>
+                <h4>E-H</h4>
 
-				<div class="inner-ul">
+                <div class="inner-ul">
 
-					<ul class="ul1">
+                    <ul class="ul1">
                         {% for brand in content.brands.e %}
                         <li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
                         {% if content.brands.e|length/4 > 1 %}
                             {% if loop.index%((content.brands.e|length/4)|round) == 0 %}
-	                            </ul><ul  class="ul{{loop.index/((content.brands.e|length/4)|round)+1}}">
+                                </ul><ul  class="ul{{loop.index/((content.brands.e|length/4)|round)+1}}">
                             {% endif %}                       
                         {% endif %}
                         {% endfor %}
-					</ul>
+                    </ul>
 
                     {% if content.brands.e|length > 24 %}
-					<div class="showmorebrand">
+                    <div class="showmorebrand">
 
-						<a href="#">показать еще</a>
+                        <a href="#">показать еще</a>
 
-					</div>
+                    </div>
                     {% endif %}
 
-				</div>
+                </div>
 
-			</div>
+            </div>
             {% endif %}
             {% if content.brands.i|length > 0 %}
-			<div class="part">
+            <div class="part">
 
-				<h4>I-L</h4>
+                <h4>I-L</h4>
 
-				<div class="inner-ul">
+                <div class="inner-ul">
 
-					<ul class="ul1">
+                    <ul class="ul1">
                         {% for brand in content.brands.i %}
                         <li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
                         {% if content.brands.i|length/4 > 1 %}
@@ -117,28 +130,28 @@
                             {% endif %}
                         {% endif %}
                         {% endfor %}
-					</ul>
+                    </ul>
 
                     {% if content.brands.i|length > 24 %}
-					<div class="showmorebrand">
+                    <div class="showmorebrand">
 
-						<a href="#">показать еще</a>
+                        <a href="#">показать еще</a>
 
-					</div>
+                    </div>
                     {% endif %}
 
-				</div>
+                </div>
 
-			</div>
+            </div>
             {% endif %}
             {% if content.brands.m|length > 0 %}
-			<div class="part">
+            <div class="part">
 
-				<h4>M-P</h4>
+                <h4>M-P</h4>
 
-				<div class="inner-ul">
+                <div class="inner-ul">
 
-					<ul class="ul1">
+                    <ul class="ul1">
                         {% for brand in content.brands.m %}
                         <li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
                         {% if content.brands.m|length/4 > 1 %}
@@ -147,33 +160,33 @@
                             {% endif %}
                         {% endif %}
                         {% endfor %}
-					</ul>
+                    </ul>
 
                     {% if content.brands.m|length > 24 %}
-					<div class="showmorebrand">
+                    <div class="showmorebrand">
 
-						<a href="#">показать еще</a>
+                        <a href="#">показать еще</a>
 
-					</div>
+                    </div>
                     {% endif %}
 
-				</div>
+                </div>
 
-			</div>
+            </div>
             {% endif %}
-			<div class="onlymobile">
-				<noindex>
-				{{adverts.mobile_brands|raw}}
-				</noindex>
-			</div>
+            <div class="onlymobile">
+                <noindex>
+                {{adverts.mobile_brands|raw}}
+                </noindex>
+            </div>
             {% if content.brands.q|length > 0 %}
-			<div class="part">
+            <div class="part">
 
-				<h4>Q-T</h4>
+                <h4>Q-T</h4>
 
-				<div class="inner-ul">
+                <div class="inner-ul">
 
-					<ul class="ul1">
+                    <ul class="ul1">
                         {% for brand in content.brands.q %}
                         <li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
                         {% if content.brands.q|length/4 > 1 %}
@@ -182,28 +195,28 @@
                             {% endif %}
                         {% endif %}
                         {% endfor %}
-					</ul>
+                    </ul>
 
                     {% if content.brands.q|length > 24 %}
-					<div class="showmorebrand">
+                    <div class="showmorebrand">
 
-						<a href="#">показать еще</a>
+                        <a href="#">показать еще</a>
 
-					</div>
+                    </div>
                     {% endif %}
 
-				</div>
+                </div>
 
-			</div>
+            </div>
             {% endif %}
             {% if content.brands.u|length > 0 %}
-			<div class="part">
+            <div class="part">
 
-				<h4>U-Z</h4>
+                <h4>U-Z</h4>
 
-				<div class="inner-ul">
+                <div class="inner-ul">
 
-					<ul class="ul1">
+                    <ul class="ul1">
                         {% for brand in content.brands.u %}
                         <li><a href="/brand/{{brand.id}}">{{brand.name}}</a></li>
                         {% if content.brands.u|length/4 > 1 %}
@@ -212,34 +225,34 @@
                             {% endif %}
                         {% endif %}
                         {% endfor %}
-					</ul>
+                    </ul>
 
                     {% if content.brands.u|length > 24 %}
-					<div class="showmorebrand">
+                    <div class="showmorebrand">
 
-						<a href="#">показать еще</a>
+                        <a href="#">показать еще</a>
 
-					</div>
+                    </div>
                     {% endif %}
 
-				</div>
+                </div>
 
-			</div>
+            </div>
             {% endif %}
-			<div class="kakoito-text">			
-		<!--	{{additional.promotextbtm|raw}} вывод разного текста для подкатегорий брендов--->
-			</div>
+            <div class="kakoito-text">            
+        <!--    {{additional.promotextbtm|raw}} вывод разного текста для подкатегорий брендов--->
+            </div>
 
-		</div>
+        </div>
 
-		{% include 'parts/menu.twig'%}
+        {% include 'parts/menu.twig'%}
 
         {#
-		<aside class="side-right">
-			<noindex>
-			{{adverts.right_banners|raw}}
-			</noindex>
-		</aside>
-        #}		
-	</div>		
+        <aside class="side-right">
+            <noindex>
+            {{adverts.right_banners|raw}}
+            </noindex>
+        </aside>
+        #}        
+    </div>        
 {% endblock %}

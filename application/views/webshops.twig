@@ -42,11 +42,24 @@
 
 		<div class="center kat">
 		
-        <div class="banner-width">
-				<noindex>
-				{{adverts.top_fullwidth|raw}}
-				</noindex>
-        </div>
+            <div class="banner-width nomobile">
+                <noindex>
+                {{adverts.top_fullwidth|raw}}
+                </noindex>
+            </div>
+
+            <div class="banner-width onlymobile">
+                <noindex>
+<!-- Yandex.RTB R-A-141647-19 -->
+<div id="yandex_rtb_R-A-141647-19"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-141647-19',
+    blockId: 'R-A-141647-19'
+  })
+})</script>
+                </noindex>
+            </div>
 			<h1 style="float:left;">{{content.title|raw}}
 			</h1>
 <div class="rblock">
@@ -94,7 +107,8 @@
 })</script>
             </noindex>
     </div>
-{% endif %}                
+{% endif %}
+{#                
 {% if loop.index == 36 %}
     <div class="banner-width nomobile">
             <noindex>
@@ -108,7 +122,8 @@
 })</script>
             </noindex>
     </div>
-{% endif %}                     
+{% endif %}
+#}                     
 {% if loop.index == 8 %}
 	<div class="onlymobile">
 		<noindex>

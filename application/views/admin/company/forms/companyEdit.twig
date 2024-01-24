@@ -253,7 +253,14 @@
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="urlk"  value="{{record.urlk}}">
                             </div>
-                        </div>                         
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Cсылка в новой вкладке</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" class="form-control" name="urlkCheck" {% if record.urlkCheck == 'on' %}checked{% endif %}>
+                            </div>
+                        </div> 
+                            
                         {% if not new %}
                         {#<div class="form-group">
                             <label class="col-md-3 control-label">Фотографии компании</label>

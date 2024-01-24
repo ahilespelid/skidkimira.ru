@@ -1,4 +1,12 @@
 <?php
+header('Status: 404 Not Found');
+
+$this->config =& get_config();
+$base_url = $this->config['base_url'];
+
+//header("HTTP/1.1 301 Moved Permanently"); 
+//header("Location: $base_url"); 
+ 
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
@@ -59,7 +67,17 @@ p {
 	<div id="container">
 		<h1>Страница не найдена</h1>
 		<?php echo $message; ?>
-		<p><a href="http://www.skidkimira.ru">На главную</a></p>
+		<p><a href="//<?=$_SERVER['HTTP_HOST'];?>">На главную</a></p>
 	</div>
 </body>
+<script>
+function sleep(ms,f){return(setTimeout(f,ms));}
+sleep(3000, ()=>{
+    console.log('404 Not Found');
+    let link = document.createElement('a');
+        link.href = '//<?=$_SERVER['HTTP_HOST'];?>';
+        document.body.appendChild(link); link.click();
+});
+</script>
 </html>
+<?php exit();?>

@@ -10,6 +10,10 @@
 # Java class files
 *.class
 
+# Static
+images/
+robots/
+
 # Generated files
 bin/
 gen/

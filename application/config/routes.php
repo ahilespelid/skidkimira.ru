@@ -49,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = 'welcome/notfound';
 
@@ -67,7 +68,9 @@ $route['catalogue/discount/tc/(:num)/actual/(:num)/p/(:num)'] = 'discounts/tc/$1
 
 
 $route['discount/(:num)'] = 'discounts/details/$1';
+$route['discount/url/(:num)'] = 'discounts/url/$1';
 $route['company/(:num)'] = 'companies/details/$1';
+$route['company/url/(:num)'] = 'companies/url/$1';
 $route['brand/(:num)'] = 'brands/details/$1';
 $route['tcbrand/(:num)'] = 'tradecenters/details/$1';
 
@@ -127,3 +130,5 @@ $route['catalogue/tradecenters/name/(:any)'] = 'search/tc/$1';
 $route['(:any)'] = 'welcome/custompage/$1';
 
 $route['translate_uri_dashes'] = FALSE;
+
+$route['generate_sitemap'] = 'sitemap/index';

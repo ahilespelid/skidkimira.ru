@@ -59,9 +59,7 @@ class Welcome extends CI_Controller {
 		//$this->load->view('welcome_message');
 	}
 
-	public function notfound(){
-		show_404();
-	}
+	public function notfound(){show_404();}
 
 	public function rebuildMenus(){
 			$this->load->model('MenuModel');

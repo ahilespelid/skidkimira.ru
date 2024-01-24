@@ -271,6 +271,8 @@ class CompanyModel extends CI_Model {
             $data['otherBrand'] = 0;
          if(!isset($data['jewelryBrand']))
             $data['jewelryBrand'] = 0;
+         if(!isset($data['urlkCheck']))
+            $data['urlkCheck'] = 0;
 
 
          
